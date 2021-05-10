@@ -1,5 +1,7 @@
 package com.silencedut.knowweather.entity;
 
+import android.util.Log;
+
 import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.baselib.commonhelper.utils.TimeUtil;
 import com.silencedut.weather_core.api.weatherprovider.WeatherData;
@@ -36,13 +38,19 @@ public class WeatherTransverter {
 
             List<WeatherData.HoursForecastEntity> hoursForecastEntities  = new ArrayList<>();
             weatherData.setHoursForecast(hoursForecastEntities);
-            for(HeWeather.HeWeather6Bean.HourlyBean hourlyBean : hourlyBeans) {
+            if(null != hourlyBeans){
+                for(HeWeather.HeWeather6Bean.HourlyBean hourlyBean : hourlyBeans) {
 
-                WeatherData.HoursForecastEntity hoursForecastEntity = new WeatherData.HoursForecastEntity();
-                hoursForecastEntity.setTemp(hourlyBean.getTmp());
-                hoursForecastEntity.setTime(hourlyBean.getTime());
-                hoursForecastEntity.setWeather(hourlyBean.getCond_txt());
-                hoursForecastEntities.add(hoursForecastEntity);
+                    WeatherData.HoursForecastEntity hoursForecastEntity = new WeatherData.HoursForecastEntity();
+                    hoursForecastEntity.setTemp(hourlyBean.getTmp());
+                    hoursForecastEntity.setTime(hourlyBean.getTime());
+                    hoursForecastEntity.setWeather(hourlyBean.getCond_txt());
+                    hoursForecastEntities.add(hoursForecastEntity);
+                }
+            } else {
+                //
+                //TODO tigermei
+                Log.e(TAG, "WeatherTransverter, error");
             }
 
             List<WeatherData.DailyForecastEntity> dailyForecastEntities  = new ArrayList<>();

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.silencedut.baselib.commonhelper.log.LogHelper;
@@ -96,9 +97,16 @@ public class WeatherModel extends BaseViewModel implements LocationNotification 
 
         List<DailyWeatherData> dailyWeatherDatas = new ArrayList<>();
         List<WeatherData.DailyForecastEntity> dailyForecastEntities = weatherData.getDailyForecast();
-        for (int count = 0; count < dailyForecastEntities.size() - 2; count++) {
-            // only take 5 days weather
-            dailyWeatherDatas.add(new DailyWeatherData(dailyForecastEntities.get(count)));
+        if(null != dailyForecastEntities){
+            for (int count = 0; count < dailyForecastEntities.size() - 2; count++) {
+                // only take 5 days weather
+                dailyWeatherDatas.add(new DailyWeatherData(dailyForecastEntities.get(count)));
+            }
+        } else {
+            //
+            //TODO tigermei
+
+            Log.e(TAG, "parseWeather Error!");
         }
         mDailyData = dailyWeatherDatas;
 
