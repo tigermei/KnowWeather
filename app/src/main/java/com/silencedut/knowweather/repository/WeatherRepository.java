@@ -84,7 +84,6 @@ public class WeatherRepository  {
     @WorkerThread
     public void updateWeather(String cityId,final StatusDataResource<WeatherData> statusDataResource) {
 
-
         if(StatusDataResource.Status.SUCCESS.equals(statusDataResource.status)) {
             try {
                 WeatherData weatherData = statusDataResource.data;

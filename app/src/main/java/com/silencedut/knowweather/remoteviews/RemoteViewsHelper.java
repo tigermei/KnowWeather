@@ -52,8 +52,8 @@ public class RemoteViewsHelper {
         //
         //TODO tigermei
 
-//        Notification notification = RemoteViewsHelper.generateCustomNotification(service);
-//        service.startForeground(NOTICE_ID_TYPE_0, notification);// 开始前台服务
+        Notification notification = RemoteViewsHelper.generateCustomNotification(service);
+        service.startForeground(NOTICE_ID_TYPE_0, notification);// 开始前台服务
     }
 
     public static void updateNotification(Service service) {

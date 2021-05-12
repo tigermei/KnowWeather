@@ -50,7 +50,7 @@ public class WeatherTransverter {
             } else {
                 //
                 //TODO tigermei
-                Log.e(TAG, "WeatherTransverter, error");
+                LogHelper.error(TAG, "WeatherTransverter, no hourlybean data!");
             }
 
             List<WeatherData.DailyForecastEntity> dailyForecastEntities  = new ArrayList<>();
@@ -88,10 +88,6 @@ public class WeatherTransverter {
                 aqiEntity.setQuality(airNowCityBean.qlty);
                 weatherData.setAqi(aqiEntity);
             }
-
-
-
-
 
 
         }catch (Exception e) {
