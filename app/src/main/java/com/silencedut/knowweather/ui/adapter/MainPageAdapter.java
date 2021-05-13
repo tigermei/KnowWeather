@@ -39,7 +39,7 @@ public class MainPageAdapter extends FragmentPagerAdapter {
         return mFragmentList.size();
     }
 
-    public void addFrag(Pair<BaseFragment,Integer> fragmentPair) {
+    public void addFragment(Pair<BaseFragment,Integer> fragmentPair) {
         mFragmentList.add(fragmentPair);
     }
 

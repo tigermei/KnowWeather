@@ -191,13 +191,16 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         MainPageAdapter adapter = new MainPageAdapter(this, getSupportFragmentManager());
 
         Pair<BaseFragment, Integer> cityFragmentPair = CoreManager.getImpl(ICityProvider.class).provideCityFragment();
-        adapter.addFrag(cityFragmentPair);
+        adapter.addFragment(cityFragmentPair);
 
+        //
+        //TODO
+        //这里依然可以按照provider的方式来提供UI的供给
         BaseFragment weatherFragment = WeatherFragment.newInstance();
-        adapter.addFrag(new Pair<>(weatherFragment,R.drawable.weather_tab_drawable));
+        adapter.addFragment(new Pair<>(weatherFragment,R.drawable.weather_tab_drawable));
 
         Pair<BaseFragment,Integer> settingFragment = CoreManager.getImpl(ISettingProvider.class).provideSettingFragment();
-        adapter.addFrag(settingFragment);
+        adapter.addFragment(settingFragment);
 
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
@@ -207,7 +210,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         }
 
         mViewPager.setOffscreenPageLimit(adapter.getCount());
-        mViewPager.setCurrentItem(adapter.getCount()/2);
+        mViewPager.setCurrentItem(0);
 
     }
 

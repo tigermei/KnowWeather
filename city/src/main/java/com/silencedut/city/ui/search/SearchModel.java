@@ -33,6 +33,9 @@ public class SearchModel extends BaseViewModel {
             public void run() {
                 List<City>  allCity = CoreManager.getImpl(ICityRepositoryApi.class).queryAllCities();
                 if(allCity !=null) {
+                    //
+                    //TODO
+                    // 需要对allCity进行排序？
 
                     List<CityInfoData> cityInfoDatas = new ArrayList<>();
                     String lastInitial = "";

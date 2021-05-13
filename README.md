@@ -56,10 +56,21 @@ governing permissions and limitations under the License.
 
 问题：
 1.城市搜索中，为什么采用R2去定位资源
-
+bufferknife的要求，后续研究一下为什么
+#TODO
 
 2.城市列表中的头字母，是怎样被初始化放上去的。
-
+在获取数据的时候
+通过对城市拼音的首字母进行匹配，初始化CityInfoData中initial字段
+在展示的时候会根据initial来判断是否需要展示字母
 
 3.location是如何定位到的
+采用高德地图sdk来定位，目前返回错误如下：
+auth fail:INVALID_USER_SCODE#SHA1AndPackage#B6:8E:D2:CA:7A:1B:73:01:1D:83:46:1A:29:A3:4E:5A:74:D3:6E:3A:com.silencedut.knowweather #gsid#011018233188162089305847300011370686301 #csid#8390923ebe0244b8ae06fb6d2b0c8a77
+看高德观望的介绍是开发者账号权限的问题，后面再调整一下这里的账号
+
+4.第一次进入app，默认为什么会弹出城市列表的搜索？
+？
+#TODO
+
 
