@@ -6,17 +6,20 @@ package com.silencedut.knowweather.remoteviews;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
+import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.baselib.commonhelper.persistence.PreferencesHelper;
 import com.silencedut.baselib.commonhelper.utils.TimeUtil;
 import com.silencedut.knowweather.R;
@@ -28,11 +31,15 @@ import com.silencedut.weather_core.corebase.ResourceProvider;
 
 import java.lang.reflect.Field;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
 
 public class RemoteViewsHelper {
-
+    private static final String TAG = "RemoteViewsHelper";
     private static final int NOTICE_ID_TYPE_0 = R.string.app_name;
     private static final int NOTICE_ID_TYPE_ALARM = 0x0001;
+    private static final String CHANNEL_ID = "ChannelId";
+    private static final String CHANNEL_NAME = "ChannelName";
 
 
     public static void showNotification(Service service) {
@@ -49,10 +56,26 @@ public class RemoteViewsHelper {
             return;
         }
 
-        //
-        //TODO tigermei
+        NotificationChannel notificationChannel;
+        Notification notification;
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            //
+            //通知栏在O以后需要channelid来处理，这里做兼容处理
+            notificationChannel= new NotificationChannel(CHANNEL_ID,
+                    CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setShowBadge(true);
+            notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+            NotificationManager manager= (NotificationManager) service.getSystemService(NOTIFICATION_SERVICE);
+            manager.createNotificationChannel(notificationChannel);
 
-        Notification notification = RemoteViewsHelper.generateCustomNotification(service);
+            notification = RemoteViewsHelper.generateCustomNotification(service);
+            LogHelper.info(TAG, "Notification!!!");
+        }else{
+            notification = RemoteViewsHelper.generateCustomNotification(service);
+        }
+
         service.startForeground(NOTICE_ID_TYPE_0, notification);// 开始前台服务
     }
 
@@ -82,7 +105,7 @@ public class RemoteViewsHelper {
             e.printStackTrace();
         }
 
-        NotificationManager notificationManager = (NotificationManager) service.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) service.getSystemService(NOTIFICATION_SERVICE);
 
         Notification notification = RemoteViewsHelper.generateCustomNotification(service);
         notificationManager.notify(NOTICE_ID_TYPE_0, notification);
@@ -90,14 +113,14 @@ public class RemoteViewsHelper {
 
     public static void stopNotification(Service service) {
 
-        NotificationManager notificationManager = (NotificationManager) service.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) service.getSystemService(NOTIFICATION_SERVICE);
         notificationManager.cancel(NOTICE_ID_TYPE_0);
         notificationManager.cancel(NOTICE_ID_TYPE_ALARM);
         service.stopForeground(true);
     }
 
     public static void stopAlarm(Service service) {
-        NotificationManager notificationManager = (NotificationManager) service.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) service.getSystemService(NOTIFICATION_SERVICE);
         notificationManager.cancel(NOTICE_ID_TYPE_ALARM);
     }
 
@@ -117,7 +140,7 @@ public class RemoteViewsHelper {
 
         Notification notification = new NotificationCompat.Builder(context).setOngoing(false).setPriority(NotificationCompat.PRIORITY_MAX).setContentTitle(alarmsEntity.getAlarmTypeDesc()).setContentText(alarmsEntity.getAlarmDesc()).setSmallIcon(R.mipmap.core_icon).build();
 
-        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         manager.notify(NOTICE_ID_TYPE_ALARM, notification);
 
     }
@@ -127,9 +150,11 @@ public class RemoteViewsHelper {
 
         NotificationCompat.Builder
                 builder =  new NotificationCompat
-                .Builder(context)
+                .Builder(context, CHANNEL_ID)
                 .setContent(getNotificationContentView(context))
-                .setPriority(NotificationCompat.PRIORITY_MAX).setOngoing(true);
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setOngoing(true)
+                .setChannelId("ChannelId");
 
         if (Version.buildVersion() >= Build.VERSION_CODES.LOLLIPOP) {
             builder.setSmallIcon(R.mipmap.weather_small_icon);
