@@ -51,3 +51,15 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
 ANY KIND, either express or implied. See the License for the specific language 
 
 governing permissions and limitations under the License.
+
+
+
+问题：
+1.城市搜索中，为什么采用R2去定位资源
+
+
+2.城市列表中的头字母，是怎样被初始化放上去的。
+
+
+3.location是如何定位到的
+

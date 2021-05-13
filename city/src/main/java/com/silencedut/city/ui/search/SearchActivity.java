@@ -128,10 +128,7 @@ public class SearchActivity extends BaseActivity  {
         }
     }
 
-
     public void onAllCities(final List<CityInfoData> allInfoDatas) {
-
-
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mAllCitiesRecyclerView.setLayoutManager(linearLayoutManager);
         BaseRecyclerAdapter citiesAdapter = new BaseRecyclerAdapter(this);

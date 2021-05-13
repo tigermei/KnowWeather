@@ -38,7 +38,7 @@ public class SearchModel extends BaseViewModel {
                     String lastInitial = "";
                     for(City city : allCity) {
                         CityInfoData cityInfoData =  new CityInfoData(city.country,city.countryEn,city.cityId);
-                        String currentInitial = city.countryEn.substring(0, 1);
+                        String currentInitial = city.countryEn.substring(0, 1).toUpperCase();
                         if (!lastInitial.equals(currentInitial) ) {
                             cityInfoData.setInitial(currentInitial);
                             lastInitial = currentInitial;

@@ -43,13 +43,11 @@ public class RemoteViewsHelper {
 
 
     public static void showNotification(Service service) {
-
         WeatherData weatherData = WeatherRepository.getInstance().getCachedWeatherData();
 
         if(weatherData == null) {
             return;
         }
-
 
         boolean show = PreferencesHelper.get(ResourceProvider.NOTIFICATION_ALLOW, true);
         if (!show) {
@@ -58,7 +56,7 @@ public class RemoteViewsHelper {
 
         NotificationChannel notificationChannel;
         Notification notification;
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
             //
             //通知栏在O以后需要channelid来处理，这里做兼容处理
             notificationChannel= new NotificationChannel(CHANNEL_ID,
@@ -72,7 +70,7 @@ public class RemoteViewsHelper {
 
             notification = RemoteViewsHelper.generateCustomNotification(service);
             LogHelper.info(TAG, "Notification!!!");
-        }else{
+        } else {
             notification = RemoteViewsHelper.generateCustomNotification(service);
         }
 
