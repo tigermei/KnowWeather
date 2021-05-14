@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.silencedut.baselib.commonhelper.adapter.BaseAdapterData;
 import com.silencedut.baselib.commonhelper.persistence.PreferencesHelper;
 import com.silencedut.city.R;
 import com.silencedut.city.R2;
@@ -76,28 +77,37 @@ public class CityFragment extends BaseFragment {
                 onAllFollowedCities(followedCityData);
             }
         });
+
+        mCityModel.fetchFollowedWeather();
     }
 
 
     public void onAllFollowedCities(List<FollowedCityData> followedCityDatas) {
-        mSubscribeCityAdapter.clear();
-        mSubscribeCityAdapter.setData(followedCityDatas);
-        mSubscribeCityAdapter.addData(mAddData);
-
-        if ((mIsVisibleToUser && !PreferencesHelper.get(CITYS_TIPS_SHOW, false))) {
-            mIsVisibleToUser = true;
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.core_AlertDialogStyle);
-            builder.setMessage(R.string.city_guide_info);
-            builder.setNegativeButton(R.string.core_known, null);
-            builder.setPositiveButton(R.string.core_tip_not_show, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    PreferencesHelper.put(CITYS_TIPS_SHOW, true);
-                }
-            });
-            builder.show();
+        List<BaseAdapterData> data = mSubscribeCityAdapter.getData();
+        boolean bDataChanged = true;
+        if(0 == data.size() && 0 == followedCityDatas.size()){
+            bDataChanged = false;
         }
 
+        if(bDataChanged){
+            mSubscribeCityAdapter.clear();
+            mSubscribeCityAdapter.setData(followedCityDatas);
+            mSubscribeCityAdapter.addData(mAddData);
+
+            if ((mIsVisibleToUser && !PreferencesHelper.get(CITYS_TIPS_SHOW, false))) {
+                mIsVisibleToUser = true;
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.core_AlertDialogStyle);
+                builder.setMessage(R.string.city_guide_info);
+                builder.setNegativeButton(R.string.core_known, null);
+                builder.setPositiveButton(R.string.core_tip_not_show, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PreferencesHelper.put(CITYS_TIPS_SHOW, true);
+                    }
+                });
+                builder.show();
+            }
+        }
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.arch.lifecycle.Observer;
 import android.support.annotation.MainThread;
 import android.support.annotation.Nullable;
 
+import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.city.ui.adapter.FollowedCityData;
 import com.silencedut.city.ui.adapter.FollowedCityHolder;
 import com.silencedut.taskscheduler.Task;
@@ -27,6 +28,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 
 public class CityModel extends BaseViewModel implements LocationNotification{
+    private static final String TAG = "CityModel";
+
     private MutableLiveData<List<FollowedCityData>> mFollowedWeather = new MutableLiveData<>();
 
 
@@ -49,7 +52,7 @@ public class CityModel extends BaseViewModel implements LocationNotification{
     }
 
 
-    private void fetchFollowedWeather() {
+    public void fetchFollowedWeather() {
         TaskScheduler.execute(new Task<List<WeatherData>>() {
             @Override
             public List<WeatherData> doInBackground() throws InterruptedException {
@@ -82,6 +85,7 @@ public class CityModel extends BaseViewModel implements LocationNotification{
         }
 
         mFollowedWeather.setValue(followedCityDatas);
+        LogHelper.info(TAG, "followedCityDatas.size() = :"+followedCityDatas.size());
     }
 
 
@@ -101,6 +105,7 @@ public class CityModel extends BaseViewModel implements LocationNotification{
             }
         }
         mFollowedWeather.postValue(followedCityDatas);
+        LogHelper.info(TAG, "parseFollowedWeathers followedCityDatas.size() = :"+followedCityDatas.size());
     }
 
     private void onWeather(WeatherData weatherData) {
@@ -123,6 +128,7 @@ public class CityModel extends BaseViewModel implements LocationNotification{
         }
 
         mFollowedWeather.setValue(followedCityDatas);
+        LogHelper.info(TAG, "onWeather followedCityDatas.size() = :"+followedCityDatas.size());
     }
 
 

@@ -74,3 +74,18 @@ auth fail:INVALID_USER_SCODE#SHA1AndPackage#B6:8E:D2:CA:7A:1B:73:01:1D:83:46:1A:
 #TODO
 
 
+5.值得
+a.room的数据存储
+b.VM的代码组织形式 （所有的数据通过model的方式来提供）
+c.模块结构的划分方式（划分出基础模块，业务模块，APP模块，依赖关系的解耦合）
+d.recyclerview的代码组织形式（adapter基类，viewholder基类等，以及代码的组织结构）（onCreateViewHolder通过反射来创建viewHolder的方式）
+e.协议与业务逻辑在数据结构层面的解耦。
+f.GSON 数据与类的序列化与反序列化
+g.逐步向上滑动的效果是如何实现的
+h.
+i.
+j.
+l.
+m.
+n.
+
