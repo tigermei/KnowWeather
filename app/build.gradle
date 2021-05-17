@@ -49,6 +49,7 @@ dependencies {
     implementation project(':weather_core')
     implementation project(':city')
     implementation project(':setting')
+    implementation project(':weather')
     annotationProcessor "com.jakewharton:butterknife-compiler:$gradle.butterknife"
     annotationProcessor "com.github.SilenceDut.Hub:hub-compiler:$gradle.hub"
     annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"

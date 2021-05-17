@@ -25,7 +25,6 @@ import com.silencedut.baselib.commonhelper.adapter.BaseRecyclerAdapter;
 import com.silencedut.baselib.commonhelper.utils.TimeUtil;
 import com.silencedut.baselib.commonhelper.utils.UIUtil;
 import com.silencedut.knowweather.R;
-import com.silencedut.knowweather.ui.adapter.HourWeatherHolder;
 import com.silencedut.knowweather.ui.adapter.MainPageAdapter;
 import com.silencedut.taskscheduler.TaskScheduler;
 import com.silencedut.weather_core.CoreManager;
@@ -33,6 +32,7 @@ import com.silencedut.weather_core.api.IActivityRouter;
 import com.silencedut.weather_core.api.cityprovider.ICityProvider;
 import com.silencedut.weather_core.api.coreprovider.ICoreProvider;
 import com.silencedut.weather_core.api.settingprovider.ISettingProvider;
+import com.silencedut.weather_core.api.weatherprovider.IWeatherProvider;
 import com.silencedut.weather_core.api.weatherprovider.WeatherData;
 import com.silencedut.weather_core.corebase.BaseActivity;
 import com.silencedut.weather_core.corebase.BaseFragment;
@@ -40,6 +40,11 @@ import com.silencedut.weather_core.corebase.ResourceProvider;
 import com.silencedut.weather_core.corebase.StatusDataResource;
 import com.silencedut.weather_core.permission.IPermissionApi;
 import com.silencedut.weather_core.viewmodel.ModelProvider;
+
+//
+//@TODO
+import com.tim.weather.ui.WeatherModel;
+import com.tim.weather.ui.adapter.HourWeatherHolder;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -194,10 +199,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         adapter.addFragment(cityFragmentPair);
 
         //
-        //TODO
         //这里依然可以按照provider的方式来提供UI的供给
-        BaseFragment weatherFragment = WeatherFragment.newInstance();
-        adapter.addFragment(new Pair<>(weatherFragment,R.drawable.weather_tab_drawable));
+        Pair<BaseFragment, Integer> weatherFregment = CoreManager.getImpl(IWeatherProvider.class).provideWeatherFragment();
+        adapter.addFragment(weatherFregment);
 
         Pair<BaseFragment,Integer> settingFragment = CoreManager.getImpl(ISettingProvider.class).provideSettingFragment();
         adapter.addFragment(settingFragment);

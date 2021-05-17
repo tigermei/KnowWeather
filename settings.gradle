@@ -1,4 +1,6 @@
+include ':weather'
 include ':setting'
+include ':weather'
 def initLocalGradleEnvironment() {
 
     Properties properties = new Properties()
@@ -55,4 +57,4 @@ def initVersion() {
 initLocalGradleEnvironment()
 initVersion()
 
-include 'app','baselib', 'weather_core', ':city'
+include 'app', 'baselib', 'weather_core', ':city'

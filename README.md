@@ -74,7 +74,7 @@ auth fail:INVALID_USER_SCODE#SHA1AndPackage#B6:8E:D2:CA:7A:1B:73:01:1D:83:46:1A:
 #TODO
 
 
-5.值得
+5.目前学习到的内容
 a.room的数据存储
 b.VM的代码组织形式 （所有的数据通过model的方式来提供）
 c.模块结构的划分方式（划分出基础模块，业务模块，APP模块，依赖关系的解耦合）
@@ -82,10 +82,24 @@ d.recyclerview的代码组织形式（adapter基类，viewholder基类等，以�
 e.协议与业务逻辑在数据结构层面的解耦。
 f.GSON 数据与类的序列化与反序列化
 g.逐步向上滑动的效果是如何实现的
+Android自带控件CollapsingToolbarLayout实现了伸缩栏折叠的效果，配合AppBarLayout/NestedScrollView/RecyclerView使用，达到折叠效果
 h.
 i.
 j.
 l.
 m.
 n.
+
+6.通知栏的更新效果实现方式
+a.jobSchedule 和alarmManager 定时更新的任务
+
+7.通过AppWidgetProvider实现窗口小工具（可在桌面布局小工具）
+
+8.修改weather为独立的模块
+a.模块的包名定义在AndroidManifest.xml中的package中，通过对应的包名可以找到R.java的文件位置（有别的办法修改吗？）
+b.默认的资源放在src/main/res目录下面（目录位置是否可以修改？）
+c.把weahter_fragment_main.xml放进drawable目录，会报错，错误显示recyclerview找不到。
+d.butterknife需要使用R2才能引用资源，需要深入研究一下原因
+
+
 

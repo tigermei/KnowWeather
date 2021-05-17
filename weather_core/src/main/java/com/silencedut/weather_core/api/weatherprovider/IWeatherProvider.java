@@ -2,8 +2,10 @@ package com.silencedut.weather_core.api.weatherprovider;
 
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
+import android.support.v4.util.Pair;
 
 import com.silencedut.weather_core.api.ICoreApi;
+import com.silencedut.weather_core.corebase.BaseFragment;
 import com.silencedut.weather_core.corebase.StatusDataResource;
 
 import java.util.List;
@@ -18,4 +20,5 @@ public interface IWeatherProvider extends ICoreApi {
     void updateWeather(String cityId);
     void deleteWeather(String cityId);
     void startService(Context context, boolean allowPoll);
+    Pair<BaseFragment,Integer> provideWeatherFragment();
 }

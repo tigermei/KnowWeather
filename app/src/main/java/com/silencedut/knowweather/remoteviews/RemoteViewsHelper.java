@@ -23,11 +23,15 @@ import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.baselib.commonhelper.persistence.PreferencesHelper;
 import com.silencedut.baselib.commonhelper.utils.TimeUtil;
 import com.silencedut.knowweather.R;
-import com.silencedut.knowweather.repository.WeatherRepository;
 import com.silencedut.knowweather.ui.MainActivity;
 import com.silencedut.weather_core.Version;
 import com.silencedut.weather_core.api.weatherprovider.WeatherData;
 import com.silencedut.weather_core.corebase.ResourceProvider;
+
+//
+//TODO
+//
+import com.tim.weather.repository.WeatherRepository;
 
 import java.lang.reflect.Field;
 
