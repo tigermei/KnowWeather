@@ -3,6 +3,7 @@ package com.tim.weather.ui;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 //import com.silencedut.city.ui.search.SearchActivity;
 //import com.silencedut.knowweather.WeatherApplication;
 
+import com.silencedut.weather_core.api.IActivityRouter;
 import com.tim.weather.api.IFetchWeather;
 import com.tim.weather.repository.WeatherRepository;
 
@@ -138,19 +140,15 @@ public class WeatherModel extends BaseViewModel implements LocationNotification 
     @Override
     public void onLocation(boolean success, String cityId) {
 
-        //
-        //TODO
-        //
-
-//        if (!success) {
-//            Toast.makeText(WeatherApplication.getContext(), R.string.weather_add_city_hand_mode, Toast.LENGTH_LONG).show();
-//            SearchActivity.navigationFromApplication(WeatherApplication.getContext());
-//        } else {
-//            if(!CoreManager.getImpl(ICityProvider.class).hadCurrentCityId()) {
-//                CoreManager.getImpl(ICityProvider.class).saveCurrentCityId(cityId);
-//                updateWeather();
-//            }
-//        }
+        if (!success) {
+            Toast.makeText(CoreManager.getContext(), R.string.weather_add_city_hand_mode, Toast.LENGTH_LONG).show();
+            CoreManager.getActivityRouter(IActivityRouter.class).toSearchActivity();
+        } else {
+            if(!CoreManager.getImpl(ICityProvider.class).hadCurrentCityId()) {
+                CoreManager.getImpl(ICityProvider.class).saveCurrentCityId(cityId);
+                updateWeather();
+            }
+        }
 
     }
 }

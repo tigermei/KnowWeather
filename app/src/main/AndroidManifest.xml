@@ -43,16 +43,16 @@
 
         </activity>
 
-        <service android:name=".scheduleJob.AlarmService"/>
+        <service android:name=".notification.AlarmService"/>
 
         <service
-            android:name=".scheduleJob.JobSchedulerService"
+            android:name=".notification.JobSchedulerService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             />
 
 
 
-        <receiver android:name=".remoteviews.WeatherWidgetProvider">
+        <receiver android:name=".widget.WeatherWidgetProvider">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/weather_widget_provider_info"/>

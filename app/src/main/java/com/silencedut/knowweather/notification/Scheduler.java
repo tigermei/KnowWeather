@@ -1,4 +1,4 @@
-package com.silencedut.knowweather.scheduleJob;
+package com.silencedut.knowweather.notification;
 
 import android.content.Context;
 

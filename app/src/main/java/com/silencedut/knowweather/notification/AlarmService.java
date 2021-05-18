@@ -1,11 +1,10 @@
-package com.silencedut.knowweather.scheduleJob;
+package com.silencedut.knowweather.notification;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.silencedut.knowweather.remoteviews.RemoteViewsHelper;
 import com.silencedut.router.Router;
 import com.silencedut.weather_core.callback.EventCenter;
 
@@ -24,7 +23,7 @@ public class AlarmService extends Service implements EventCenter.NotificationSta
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        RemoteViewsHelper.showNotification(this);
+        NotificationHelper.showNotification(this);
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -45,20 +44,20 @@ public class AlarmService extends Service implements EventCenter.NotificationSta
     @Override
     public void onAllowNotification(boolean allow) {
         if (!allow) {
-            RemoteViewsHelper.stopNotification(this);
+            NotificationHelper.stopNotification(this);
         } else {
-            RemoteViewsHelper.showNotification(this);
+            NotificationHelper.showNotification(this);
         }
     }
 
 
     @Override
     public void onUpdateNotification() {
-        RemoteViewsHelper.updateNotification(this);
+        NotificationHelper.updateNotification(this);
     }
 
     @Override
     public void clearAlarm() {
-        RemoteViewsHelper.stopAlarm(this);
+        NotificationHelper.stopAlarm(this);
     }
 }

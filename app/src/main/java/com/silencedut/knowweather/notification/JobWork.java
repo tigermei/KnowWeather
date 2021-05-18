@@ -1,4 +1,4 @@
-package com.silencedut.knowweather.scheduleJob;
+package com.silencedut.knowweather.notification;
 
 import android.annotation.TargetApi;
 import android.app.job.JobInfo;

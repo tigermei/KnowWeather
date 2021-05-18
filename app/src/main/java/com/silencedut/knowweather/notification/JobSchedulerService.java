@@ -1,11 +1,10 @@
-package com.silencedut.knowweather.scheduleJob;
+package com.silencedut.knowweather.notification;
 
 import android.annotation.TargetApi;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.os.Build;
 
-import com.silencedut.knowweather.remoteviews.RemoteViewsHelper;
 import com.silencedut.router.Router;
 import com.silencedut.weather_core.callback.EventCenter;
 
@@ -31,7 +30,7 @@ public class JobSchedulerService extends JobService implements EventCenter.Notif
     @Override
     public boolean onStartJob(JobParameters params) {
 
-        RemoteViewsHelper.showNotification(this);
+        NotificationHelper.showNotification(this);
         return true;
     }
 
@@ -45,20 +44,20 @@ public class JobSchedulerService extends JobService implements EventCenter.Notif
     @Override
     public void onAllowNotification(boolean allow) {
         if (!allow) {
-            RemoteViewsHelper.stopNotification(this);
+            NotificationHelper.stopNotification(this);
         } else {
-            RemoteViewsHelper.showNotification(this);
+            NotificationHelper.showNotification(this);
         }
     }
 
     @Override
     public void onUpdateNotification() {
-        RemoteViewsHelper.updateNotification(this);
+        NotificationHelper.updateNotification(this);
     }
 
     @Override
     public void clearAlarm() {
-        RemoteViewsHelper.stopAlarm(this);
+        NotificationHelper.stopAlarm(this);
     }
 
 }

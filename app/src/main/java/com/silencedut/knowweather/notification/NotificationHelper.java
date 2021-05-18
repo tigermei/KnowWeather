@@ -1,4 +1,4 @@
-package com.silencedut.knowweather.remoteviews;
+package com.silencedut.knowweather.notification;
 
 /**
  * Created by SilenceDut on 2016/10/29 .
@@ -22,24 +22,20 @@ import android.widget.RemoteViews;
 import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.baselib.commonhelper.persistence.PreferencesHelper;
 import com.silencedut.baselib.commonhelper.utils.TimeUtil;
-import com.silencedut.knowweather.R;
-import com.silencedut.knowweather.ui.MainActivity;
 import com.silencedut.weather_core.Version;
 import com.silencedut.weather_core.api.weatherprovider.WeatherData;
 import com.silencedut.weather_core.corebase.ResourceProvider;
-
-//
-//TODO
-//
-import com.tim.weather.repository.WeatherRepository;
+import com.silencedut.knowweather.R;
+import com.silencedut.knowweather.widget.WeatherWidgetProvider;
 
 import java.lang.reflect.Field;
-
+import com.silencedut.knowweather.ui.MainActivity;
 import static android.content.Context.NOTIFICATION_SERVICE;
 
+import com.tim.weather.repository.WeatherRepository;
 
-public class RemoteViewsHelper {
-    private static final String TAG = "RemoteViewsHelper";
+public class NotificationHelper {
+    private static final String TAG = "NotificationHelper";
     private static final int NOTICE_ID_TYPE_0 = R.string.app_name;
     private static final int NOTICE_ID_TYPE_ALARM = 0x0001;
     private static final String CHANNEL_ID = "ChannelId";
@@ -72,10 +68,10 @@ public class RemoteViewsHelper {
             NotificationManager manager= (NotificationManager) service.getSystemService(NOTIFICATION_SERVICE);
             manager.createNotificationChannel(notificationChannel);
 
-            notification = RemoteViewsHelper.generateCustomNotification(service);
+            notification = NotificationHelper.generateCustomNotification(service);
             LogHelper.info(TAG, "Notification!!!");
         } else {
-            notification = RemoteViewsHelper.generateCustomNotification(service);
+            notification = NotificationHelper.generateCustomNotification(service);
         }
 
         service.startForeground(NOTICE_ID_TYPE_0, notification);// 开始前台服务
@@ -109,7 +105,7 @@ public class RemoteViewsHelper {
 
         NotificationManager notificationManager = (NotificationManager) service.getSystemService(NOTIFICATION_SERVICE);
 
-        Notification notification = RemoteViewsHelper.generateCustomNotification(service);
+        Notification notification = NotificationHelper.generateCustomNotification(service);
         notificationManager.notify(NOTICE_ID_TYPE_0, notification);
     }
 
@@ -177,12 +173,10 @@ public class RemoteViewsHelper {
     }
 
     private static RemoteViews getNotificationContentView(Context context) {
-
-
-
         int themeId = ResourceProvider.getNotificationThemeId(PreferencesHelper.get(ResourceProvider.NOTIFICATION_THEME, 1));
 
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), themeId);
+
 
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -190,11 +184,9 @@ public class RemoteViewsHelper {
         remoteViews.setOnClickPendingIntent(R.id.notification_container, contentIntent);
 
         WeatherData weatherData = WeatherRepository.getInstance().getCachedWeatherData();
-
         if(weatherData == null) {
             return remoteViews;
         }
-
 
         WeatherData.BasicEntity basic = weatherData.getBasic();
         remoteViews.setTextViewText(R.id.weather_temp, basic.getTemp());
@@ -203,10 +195,8 @@ public class RemoteViewsHelper {
         remoteViews.setTextViewText(R.id.post_time, TimeUtil.getHourMinute() + " 更新");
         remoteViews.setImageViewResource(R.id.weather_icon, ResourceProvider.getIconId(basic.getWeather()));
 
-
         Intent updateIntent = new Intent(WeatherWidgetProvider.UPDATE_ACTION);
         context.sendBroadcast(updateIntent);
-
         return remoteViews;
     }
 

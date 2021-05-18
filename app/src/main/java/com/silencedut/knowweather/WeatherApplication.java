@@ -33,5 +33,4 @@ public class WeatherApplication extends Application {
         return sApplication;
     }
 
-
 }

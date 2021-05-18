@@ -14,6 +14,7 @@ import com.silencedut.setting.R;
 import com.silencedut.setting.R2;
 import com.silencedut.weather_core.CoreManager;
 import com.silencedut.weather_core.api.IActivityRouter;
+import com.silencedut.weather_core.api.notificationprovider.INotificationService;
 import com.silencedut.weather_core.api.weatherprovider.IWeatherProvider;
 import com.silencedut.weather_core.callback.EventCenter;
 import com.silencedut.weather_core.corebase.BaseFragment;
@@ -87,7 +88,7 @@ public class SettingFragment extends BaseFragment {
         int scheduleWhich = PreferencesHelper.get(ResourceProvider.POLLING_TIME, 0);
         mUpdateSchedule.setText(mScheduleKeys[scheduleWhich]);
         if (isAdded()) {
-            CoreManager.getImpl(IWeatherProvider.class).startService(getActivity(), scheduleWhich != mScheduleKeys.length - 1);
+            CoreManager.getImpl(INotificationService.class).startService(getActivity(), scheduleWhich != mScheduleKeys.length - 1);
         }
 
     }

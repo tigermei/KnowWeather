@@ -19,6 +19,5 @@ public interface IWeatherProvider extends ICoreApi {
     List<WeatherData> fetchFollowedWeather();
     void updateWeather(String cityId);
     void deleteWeather(String cityId);
-    void startService(Context context, boolean allowPoll);
     Pair<BaseFragment,Integer> provideWeatherFragment();
 }

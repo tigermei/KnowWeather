@@ -42,7 +42,7 @@ import com.silencedut.weather_core.permission.IPermissionApi;
 import com.silencedut.weather_core.viewmodel.ModelProvider;
 
 //
-//@TODO
+//TODO
 import com.tim.weather.ui.WeatherModel;
 import com.tim.weather.ui.adapter.HourWeatherHolder;
 

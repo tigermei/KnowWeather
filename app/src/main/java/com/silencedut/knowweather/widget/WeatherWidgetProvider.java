@@ -1,4 +1,4 @@
-package com.silencedut.knowweather.remoteviews;
+package com.silencedut.knowweather.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -9,13 +9,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.silencedut.knowweather.R;
-import com.silencedut.knowweather.ui.SplashActivity;
 import com.silencedut.weather_core.CoreManager;
 import com.silencedut.weather_core.api.weatherprovider.IWeatherProvider;
 import com.silencedut.weather_core.api.weatherprovider.WeatherData;
 import com.silencedut.weather_core.corebase.ResourceProvider;
 import com.silencedut.weather_core.corebase.StatusDataResource;
+import com.silencedut.knowweather.R;
+
+import com.silencedut.knowweather.ui.SplashActivity;
 
 /**
  * Created by SilenceDut on 2016/11/10 .

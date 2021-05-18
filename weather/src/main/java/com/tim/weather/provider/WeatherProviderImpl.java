@@ -14,11 +14,6 @@ import com.silencedut.weather_core.corebase.StatusDataResource;
 import com.tim.weather.api.IFetchWeather;
 import com.tim.weather.repository.WeatherRepository;
 import com.tim.weather.R;
-
-//
-//TODO
-//import com.silencedut.knowweather.scheduleJob.PollingUtils;
-//import com.silencedut.setting.ui.SettingFragment;
 import com.tim.weather.ui.WeatherFragment;
 
 import java.util.List;
@@ -54,14 +49,6 @@ public class WeatherProviderImpl implements IWeatherProvider {
     @Override
     public void deleteWeather(String cityId) {
         WeatherRepository.getInstance().deleteWeather(cityId);
-    }
-
-    @Override
-    public void startService(Context context, boolean allowPoll) {
-
-        //
-        //TODO
-        //PollingUtils.startService(context,allowPoll);
     }
 
     @Override
