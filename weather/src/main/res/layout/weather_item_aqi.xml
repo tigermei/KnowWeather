@@ -32,7 +32,7 @@
             android:orientation="vertical"
             >
 
-            <com.silencedut.knowweather.ui.customview.LevelView
+            <com.tim.weather.ui.customview.LevelView
                 android:id="@+id/aqi_view"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -95,7 +95,7 @@
             android:orientation="horizontal"
             >
 
-            <com.silencedut.knowweather.ui.customview.LevelView
+            <com.tim.weather.ui.customview.LevelView
                 android:id="@+id/pm2.5_view"
                 android:layout_gravity="center_vertical"
                 android:layout_width="0dp"
@@ -137,7 +137,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <com.silencedut.knowweather.ui.customview.LevelView
+            <com.tim.weather.ui.customview.LevelView
                 android:id="@+id/pm10_view"
                 android:layout_gravity="center_vertical"
                 android:layout_width="0dp"

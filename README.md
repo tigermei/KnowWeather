@@ -97,7 +97,12 @@ a.jobSchedule 和alarmManager 定时更新的任务
 a.模块的包名定义在AndroidManifest.xml中的package中，通过对应的包名可以找到R.java的文件位置（有别的办法修改吗？）
 b.默认的资源放在src/main/res目录下面（目录位置是否可以修改？）
 c.把weahter_fragment_main.xml放进drawable目录，会报错，错误显示recyclerview找不到。
-d.butterknife需要使用R2才能引用资源，需要深入研究一下原因
+d.butterknife需要使用R2才能引用资源，需要深入研究一下原因。
+e.drawable可以放<selector>标签，标示按钮的3种状态。
+f.代码解耦过程中Notification的位置怎么安放？
+g.VM如何拿到Context的对象？
+h.JobScheduler需要在清单文件种列出BIND_JOB_SERVICE权限，否则调用后会出现报错
+i.
 
 
 
