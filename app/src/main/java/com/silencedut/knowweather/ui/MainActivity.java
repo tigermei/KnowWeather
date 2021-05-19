@@ -188,8 +188,19 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
         });
 
-        mWeatherModel.updateWeather();
+        initialWeatherData();
 
+    }
+
+    private void initialWeatherData(){
+        boolean bHadCurrentCityId = CoreManager.getImpl(ICityProvider.class).hadCurrentCityId();
+        if(!bHadCurrentCityId){
+            //
+            //如果当前没有默认城市，默认城市给到"深圳"
+            CoreManager.getImpl(ICityProvider.class).saveCurrentCityId("CN101280601");
+        }
+
+        mWeatherModel.updateWeather();
     }
 
     private void setupViewPager() {
