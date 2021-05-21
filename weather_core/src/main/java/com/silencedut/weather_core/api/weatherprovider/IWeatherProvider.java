@@ -17,6 +17,7 @@ import java.util.List;
 public interface IWeatherProvider extends ICoreApi {
     LiveData<StatusDataResource<WeatherData>> getWeatherData();
     List<WeatherData> fetchFollowedWeather();
+    void updateWeather();
     void updateWeather(String cityId);
     void deleteWeather(String cityId);
     Pair<BaseFragment,Integer> provideWeatherFragment();

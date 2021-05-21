@@ -25,6 +25,8 @@ import com.silencedut.baselib.commonhelper.adapter.BaseRecyclerAdapter;
 import com.silencedut.baselib.commonhelper.utils.TimeUtil;
 import com.silencedut.baselib.commonhelper.utils.UIUtil;
 import com.silencedut.knowweather.R;
+import com.silencedut.knowweather.ui.adapter.HourlyWeatherHolder;
+import com.silencedut.knowweather.ui.adapter.HourlyWeatherHolder;
 import com.silencedut.knowweather.ui.adapter.MainPageAdapter;
 import com.silencedut.taskscheduler.TaskScheduler;
 import com.silencedut.weather_core.CoreManager;
@@ -38,13 +40,15 @@ import com.silencedut.weather_core.corebase.BaseActivity;
 import com.silencedut.weather_core.corebase.BaseFragment;
 import com.silencedut.weather_core.corebase.ResourceProvider;
 import com.silencedut.weather_core.corebase.StatusDataResource;
+import com.silencedut.weather_core.location.ILocationApi;
 import com.silencedut.weather_core.permission.IPermissionApi;
-import com.silencedut.weather_core.viewmodel.ModelProvider;
 
 //
 //TODO
-import com.tim.weather.ui.WeatherModel;
-import com.tim.weather.ui.adapter.HourWeatherHolder;
+import com.tim.weather.ui.adapter.HoursForecastData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -63,7 +67,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
     private float percentageOfShowTitle = DEFAULT_PERCENTAGE;
     private float mWeatherInfoContainerLeft;
-    private BaseRecyclerAdapter mHoursForecastAdapter;
+    private BaseRecyclerAdapter mHourlyWeatherAdapter;
     private String mTemperature;
     private String mWeatherStatus;
     protected float mTitlePercentage;
@@ -91,8 +95,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     View mTitleContainer;
     @BindView(R.id.tabLayout)
     TabLayout mTabLayout;
-    @BindView(R.id.main_hours_forecast_recyclerView)
-    RecyclerView mHoursForecastRecyclerView;
+    @BindView(R.id.main_hours_weather_recyclerView)
+    RecyclerView mHourlyWeatherRecyclerView;
     @BindView(R.id.viewPager)
     ViewPager mViewPager;
     @BindView(R.id.main_bg)
@@ -104,7 +108,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     @BindView(R.id.main_post_time)
     TextView mPostTimeTv;
 
-    private WeatherModel mWeatherModel;
     private long mStartRefresh;
     private String mUpdateTime ="";
 
@@ -147,6 +150,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 }
             }
         });
+
         mActionRotate = ObjectAnimator.ofFloat(mRefreshStatus, "rotation", 0, 360);
         mActionRotate.setDuration(ROTATION_DURATION);
         mActionRotate.setRepeatCount(-1);
@@ -157,29 +161,30 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mSucceedAnimator = ofFloat(mPostTimeTv, "scaleX", 1, 0, 1).setDuration(POSTTIME_DURATION);
         mSucceedAnimator.setStartDelay(ROTATION_DURATION);
 
-
     }
 
     @Override
     protected void initDataObserver() {
-
-        mWeatherModel = ModelProvider.getModel(this,WeatherModel.class);
-
-        mWeatherModel.getGetWeatherStatus().observe(this, new Observer<StatusDataResource.Status>() {
+        CoreManager.getImpl(IWeatherProvider.class).getWeatherData().observe(this, new Observer<StatusDataResource<WeatherData>>() {
             @Override
-            public void onChanged(@Nullable final StatusDataResource.Status status) {
-                if(StatusDataResource.Status.LOADING.equals(status)) {
+            public void onChanged(@Nullable final StatusDataResource<WeatherData> status) {
+                if(StatusDataResource.Status.LOADING.equals(status.status)) {
                     startRefresh();
-                    updateBaseWeatherInfo(mWeatherModel.getWeatherBaseData());
-                    mHoursForecastAdapter.setData(mWeatherModel.getHoursDatas());
+
+                    updateBaseWeatherInfo(status.data.getBasic());
+                    List<HoursForecastData> hourlyWeatherDatas = new ArrayList<>();
+                    for (WeatherData.HoursForecastEntity hoursForecastEntity : status.data.getHoursForecast()) {
+                        hourlyWeatherDatas.add(new HoursForecastData(hoursForecastEntity));
+                    }
+                    mHourlyWeatherAdapter.setData(hourlyWeatherDatas);
                 }else {
                     if(SystemClock.currentThreadTimeMillis() - mStartRefresh > MIN_REFRESH_MILLS) {
-                        onWeatherUpdate(StatusDataResource.Status.SUCCESS.equals(status));
+                        onWeatherUpdate(StatusDataResource.Status.SUCCESS.equals(status.status));
                     }else {
                         TaskScheduler.runOnUIThread(new Runnable() {
                             @Override
                             public void run() {
-                                onWeatherUpdate(StatusDataResource.Status.SUCCESS.equals(status));
+                                onWeatherUpdate(StatusDataResource.Status.SUCCESS.equals(status.status));
                             }
                         },MIN_REFRESH_MILLS+SystemClock.currentThreadTimeMillis() - mStartRefresh);
                     }
@@ -200,7 +205,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             CoreManager.getImpl(ICityProvider.class).saveCurrentCityId("CN101280601");
         }
 
-        mWeatherModel.updateWeather();
+        CoreManager.getImpl(IWeatherProvider.class).updateWeather();
     }
 
     private void setupViewPager() {
@@ -232,10 +237,10 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     void setupHoursForecast() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mHoursForecastRecyclerView.setLayoutManager(linearLayoutManager);
-        mHoursForecastAdapter = new BaseRecyclerAdapter(this);
-        mHoursForecastAdapter.registerHolder(HourWeatherHolder.class, R.layout.weather_item_hour_forecast);
-        mHoursForecastRecyclerView.setAdapter(mHoursForecastAdapter);
+        mHourlyWeatherRecyclerView.setLayoutManager(linearLayoutManager);
+        mHourlyWeatherAdapter = new BaseRecyclerAdapter(this);
+        mHourlyWeatherAdapter.registerHolder(HourlyWeatherHolder.class, R.layout.weather_item_day);
+        mHourlyWeatherRecyclerView.setAdapter(mHourlyWeatherAdapter);
     }
 
     @Override
@@ -251,7 +256,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mTitleContainer.setAlpha(1 - percentage);
         mTitleContainer.setScaleX(1 - percentage);
         mTitleContainer.setScaleY(1 - percentage);
-        mHoursForecastRecyclerView.setAlpha(1 - percentage);
+        mHourlyWeatherRecyclerView.setAlpha(1 - percentage);
 
         if (mWeatherInfoContainerLeft > 0) {
             mTitleContainer.setX(mWeatherInfoContainerLeft * (1 - percentage));
@@ -275,14 +280,21 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
     @OnClick(R.id.float_action)
     public void onClick() {
-        mWeatherModel.updateWeather();
+        CoreManager.getImpl(IWeatherProvider.class).updateWeather();
     }
 
     private void onWeatherUpdate(boolean succeed) {
 
         if (succeed) {
-            updateBaseWeatherInfo(mWeatherModel.getWeatherBaseData());
-            mHoursForecastAdapter.setData(mWeatherModel.getHoursDatas());
+            updateBaseWeatherInfo(
+                    CoreManager.getImpl(IWeatherProvider.class).getWeatherData().getValue().data.getBasic()
+            );
+
+            List<HoursForecastData> hourlyWeatherDatas = new ArrayList<>();
+            for (WeatherData.HoursForecastEntity hoursForecastEntity : CoreManager.getImpl(IWeatherProvider.class).getWeatherData().getValue().data.getHoursForecast()) {
+                hourlyWeatherDatas.add(new HoursForecastData(hoursForecastEntity));
+            }
+            mHourlyWeatherAdapter.setData(hourlyWeatherDatas);
             updateSucceed(mUpdateTime);
         } else {
             mPostTimeTv.setText(R.string.weather_refresh_fail);
@@ -291,13 +303,17 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
     }
 
+    private boolean locationIsCurrent() {
+        return CoreManager.getImpl(ICityProvider.class).getCurrentCityId()
+                .equals(CoreManager.getImpl(ILocationApi.class).getLocatedCityId());
+    }
 
     private void updateBaseWeatherInfo(WeatherData.BasicEntity basicData) {
         if(basicData == null) {
             return;
         }
 
-        mLocationTv.setCompoundDrawables(mWeatherModel.locationIsCurrent()? mDrawableLocation : null, null, null, null);
+        mLocationTv.setCompoundDrawables(locationIsCurrent()? mDrawableLocation : null, null, null, null);
         mLocationTv.setText(basicData.getCity());
         mUpdateTime = String.format(getString(R.string.weather_post), TimeUtil.getTimeTips(basicData.getTime()));
 

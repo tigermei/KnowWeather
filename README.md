@@ -100,7 +100,7 @@ c.把weahter_fragment_main.xml放进drawable目录，会报错，错误显示rec
 d.butterknife需要使用R2才能引用资源，需要深入研究一下原因。
 e.drawable可以放<selector>标签，标示按钮的3种状态。
 f.代码解耦过程中Notification的位置怎么安放？
-g.VM如何拿到Context的对象？
+g.ViewModel如何拿到Context的对象？
 h.JobScheduler需要在清单文件种列出BIND_JOB_SERVICE权限，否则调用后会出现报错
 i.
 

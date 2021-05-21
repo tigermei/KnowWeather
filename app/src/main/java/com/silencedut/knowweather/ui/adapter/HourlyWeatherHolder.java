@@ -1,17 +1,15 @@
-package com.tim.weather.ui.adapter;
+package com.silencedut.knowweather.ui.adapter;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.tim.weather.R;
-import com.tim.weather.R2;
 
 import com.silencedut.baselib.commonhelper.adapter.BaseRecyclerAdapter;
 import com.silencedut.baselib.commonhelper.adapter.BaseViewHolder;
 import com.silencedut.baselib.commonhelper.utils.Check;
 import com.silencedut.weather_core.api.weatherprovider.WeatherData;
 import com.silencedut.weather_core.corebase.ResourceProvider;
+import com.silencedut.knowweather.R;
 
 import butterknife.BindView;
 
@@ -19,20 +17,20 @@ import butterknife.BindView;
  * Created by SilenceDut on 16/10/21.
  */
 
-public class HourWeatherHolder extends BaseViewHolder<HoursForecastData> {
-    @BindView(R2.id.hour)
+public class HourlyWeatherHolder extends BaseViewHolder<HourlyWeatherData> {
+    @BindView(R.id.hour)
     TextView hour;
-    @BindView(R2.id.hour_icon)
+    @BindView(R.id.hour_icon)
     ImageView hourIcon;
-    @BindView(R2.id.hour_temp)
+    @BindView(R.id.hour_temp)
     TextView hourTemp;
 
-    public HourWeatherHolder(View itemView, BaseRecyclerAdapter baseRecyclerAdapter) {
+    public HourlyWeatherHolder(View itemView, BaseRecyclerAdapter baseRecyclerAdapter) {
         super(itemView, baseRecyclerAdapter);
     }
 
     @Override
-    public void updateItem(HoursForecastData data, int position) {
+    public void updateItem(HourlyWeatherData data, int position) {
         WeatherData.HoursForecastEntity hoursForecastData = data.hoursForecastData;
         if (Check.isNull(hoursForecastData)) {
             return;

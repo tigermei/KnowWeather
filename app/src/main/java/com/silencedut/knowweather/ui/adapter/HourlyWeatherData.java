@@ -1,19 +1,18 @@
-package com.tim.weather.ui.adapter;
-
-import com.tim.weather.R;
+package com.silencedut.knowweather.ui.adapter;
 
 import com.silencedut.baselib.commonhelper.adapter.BaseAdapterData;
 import com.silencedut.weather_core.api.weatherprovider.WeatherData;
+import com.silencedut.knowweather.R;
 
 /**
  * Created by SilenceDut on 16/10/29.
  */
 
-public class HoursForecastData implements BaseAdapterData {
+public class HourlyWeatherData implements BaseAdapterData {
 
     public WeatherData.HoursForecastEntity hoursForecastData;
 
-    public HoursForecastData(WeatherData.HoursForecastEntity hoursForecastData) {
+    public HourlyWeatherData(WeatherData.HoursForecastEntity hoursForecastData) {
         this.hoursForecastData = hoursForecastData;
     }
 
