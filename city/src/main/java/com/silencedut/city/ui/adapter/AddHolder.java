@@ -8,8 +8,6 @@ import com.silencedut.baselib.commonhelper.adapter.BaseRecyclerAdapter;
 import com.silencedut.baselib.commonhelper.adapter.BaseViewHolder;
 import com.silencedut.city.R;
 import com.silencedut.city.R2;
-import com.silencedut.weather_core.CoreManager;
-import com.silencedut.weather_core.api.IActivityRouter;
 
 import butterknife.BindView;
 import butterknife.OnClick;

@@ -8,7 +8,6 @@ import com.facebook.stetho.Stetho;
 import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.baselib.commonhelper.persistence.FileHelper;
 import com.silencedut.baselib.commonhelper.persistence.PreferencesHelper;
-import com.silencedut.hub.Hub;
 import com.silencedut.taskscheduler.TaskScheduler;
 import com.silencedut.weather_core.BuildConfig;
 import com.silencedut.weather_core.CoreManager;
@@ -32,7 +31,6 @@ public class AppConfig {
         initCrashReport(context);
         initFile();
         initLog(context);
-        initHub(context);
         initSharedPreference(context);
         workThreadInit(context);
     }
@@ -75,10 +73,6 @@ public class AppConfig {
 
     private static void initLog(Context context) {
         LogHelper.init(context, FileHelper.getLogTrace());
-    }
-
-    private static void initHub(Application context){
-        Hub.init(context);
     }
 
 

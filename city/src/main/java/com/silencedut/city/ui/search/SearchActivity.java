@@ -26,8 +26,6 @@ import com.silencedut.city.ui.adapter.CityHolder;
 import com.silencedut.city.ui.adapter.CityInfoData;
 import com.silencedut.city.ui.adapter.HeaderData;
 import com.silencedut.city.ui.adapter.HeaderHolder;
-import com.silencedut.hub_annotation.HubActivity;
-import com.silencedut.weather_core.api.IActivityRouter;
 import com.silencedut.weather_core.corebase.BaseActivity;
 import com.silencedut.weather_core.corebase.customview.SideLetterBar;
 import com.silencedut.weather_core.viewmodel.ModelProvider;

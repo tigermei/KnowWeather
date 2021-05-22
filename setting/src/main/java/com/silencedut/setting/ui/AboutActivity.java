@@ -11,11 +11,9 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.silencedut.baselib.commonhelper.log.LogHelper;
-import com.silencedut.hub_annotation.HubActivity;
 import com.silencedut.setting.R;
 import com.silencedut.setting.R2;
 import com.silencedut.weather_core.Version;
-import com.silencedut.weather_core.api.IActivityRouter;
 import com.silencedut.weather_core.corebase.BaseActivity;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.UpgradeInfo;

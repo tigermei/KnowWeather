@@ -8,8 +8,6 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import com.silencedut.baselib.commonhelper.log.LogHelper;
-import com.silencedut.hub_annotation.HubInject;
-import com.silencedut.weather_core.CoreManager;
 import com.silencedut.weather_core.api.cityprovider.ICityProvider;
 import com.silencedut.weather_core.api.weatherprovider.IWeatherProvider;
 import com.silencedut.weather_core.api.weatherprovider.WeatherData;

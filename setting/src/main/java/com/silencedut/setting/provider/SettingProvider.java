@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.util.Pair;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.silencedut.hub_annotation.HubInject;
 import com.silencedut.setting.R;
 import com.silencedut.setting.ui.SettingFragment;
 import com.silencedut.weather_core.api.settingprovider.ISettingProvider;

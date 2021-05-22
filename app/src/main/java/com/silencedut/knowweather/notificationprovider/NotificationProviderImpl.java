@@ -3,7 +3,6 @@ package com.silencedut.knowweather.notificationprovider;
 import android.content.Context;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.silencedut.hub_annotation.HubInject;
 import com.silencedut.knowweather.notification.PollingUtils;
 import com.silencedut.weather_core.api.notificationprovider.INotificationService;
 import com.silencedut.weather_core.api.weatherprovider.IWeatherProvider;

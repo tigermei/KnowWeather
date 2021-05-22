@@ -3,7 +3,6 @@ package com.tim.weather.ui;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
-import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 //import com.silencedut.knowweather.WeatherApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.silencedut.weather_core.api.IActivityRouter;
 import com.tim.weather.api.IFetchWeather;
 import com.tim.weather.repository.WeatherRepository;
 

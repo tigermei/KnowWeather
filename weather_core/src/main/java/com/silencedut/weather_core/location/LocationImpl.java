@@ -9,7 +9,6 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.silencedut.baselib.commonhelper.log.LogHelper;
-import com.silencedut.hub_annotation.HubInject;
 import com.silencedut.router.Router;
 import com.silencedut.weather_core.CoreManager;
 import com.silencedut.weather_core.api.cityprovider.City;

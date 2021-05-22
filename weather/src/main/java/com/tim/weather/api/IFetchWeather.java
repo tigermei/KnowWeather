@@ -1,7 +1,6 @@
 package com.tim.weather.api;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
-import com.silencedut.weather_core.api.ICoreApi;
 
 import java.util.List;
 

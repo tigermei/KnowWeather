@@ -4,7 +4,6 @@ import android.os.Handler;
 import android.support.annotation.WorkerThread;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
-import com.silencedut.weather_core.api.ICoreApi;
 import com.silencedut.weather_core.api.cityprovider.City;
 
 import java.util.List;

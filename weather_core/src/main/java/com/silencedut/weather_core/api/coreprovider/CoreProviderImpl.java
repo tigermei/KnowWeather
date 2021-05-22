@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.silencedut.baselib.commonhelper.log.LogHelper;
-import com.silencedut.hub_annotation.HubInject;
 import com.silencedut.weather_core.corebase.BaseActivity;
 import com.silencedut.weather_core.corebase.customview.ShareDialog;
 

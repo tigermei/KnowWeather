@@ -10,7 +10,6 @@ import com.silencedut.baselib.commonhelper.persistence.FileHelper;
 import com.silencedut.baselib.commonhelper.persistence.PreferencesHelper;
 import com.silencedut.baselib.commonhelper.utils.JsonHelper;
 import com.silencedut.city.repository.db.CityDatabase;
-import com.silencedut.hub_annotation.HubInject;
 import com.silencedut.taskscheduler.TaskScheduler;
 import com.silencedut.weather_core.CoreManager;
 import com.silencedut.weather_core.api.cityprovider.City;

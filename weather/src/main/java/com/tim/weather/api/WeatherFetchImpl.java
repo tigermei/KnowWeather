@@ -10,7 +10,6 @@ import com.tim.weather.entity.WeatherTransverter;
 import com.tim.weather.repository.WeatherRepository;
 
 import com.silencedut.baselib.commonhelper.log.LogHelper;
-import com.silencedut.hub_annotation.HubInject;
 import com.silencedut.weather_core.AppHttpClient;
 import com.silencedut.weather_core.CoreManager;
 import com.silencedut.weather_core.api.cityprovider.City;

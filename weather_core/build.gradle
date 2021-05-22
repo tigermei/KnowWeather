@@ -40,12 +40,8 @@ dependencies {
 
     api project(':baselib')
 
-    api "com.github.SilenceDut.Hub:hub:$gradle.hub"
-
     api "com.alibaba:arouter-api:$gradle.arouter"
     annotationProcessor "com.alibaba:arouter-compiler:$gradle.arouter_compiler"
-
-    annotationProcessor "com.github.SilenceDut.Hub:hub-compiler:$gradle.hub"
 
     annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"
 

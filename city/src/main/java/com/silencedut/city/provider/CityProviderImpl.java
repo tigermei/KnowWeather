@@ -10,8 +10,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.city.R;
 import com.silencedut.city.repository.ICityRepositoryApi;
 import com.silencedut.city.ui.CityFragment;
-import com.silencedut.hub_annotation.HubInject;
-import com.silencedut.weather_core.CoreManager;
 import com.silencedut.weather_core.api.cityprovider.City;
 import com.silencedut.weather_core.api.cityprovider.ICityProvider;
 import com.silencedut.weather_core.corebase.BaseFragment;
