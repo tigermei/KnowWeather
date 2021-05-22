@@ -4,6 +4,9 @@ import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.support.v4.util.Pair;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+
 import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.hub_annotation.HubInject;
 import com.silencedut.weather_core.CoreManager;
@@ -24,14 +27,12 @@ import java.util.List;
  * Created by SilenceDut on 2018/1/19 .
  */
 
-@HubInject(api = IWeatherProvider.class)
+@Route(path = "/weather/weatherdata", name = "weather data provider")
 public class WeatherProviderImpl implements IWeatherProvider {
     private final static String TAG = "WeahterProviderImpl";
 
     @Override
-    public void onCreate() {
-
-    }
+    public void init(Context context){}
 
     @Override
     public LiveData<StatusDataResource<WeatherData>> getWeatherData() {
@@ -46,14 +47,14 @@ public class WeatherProviderImpl implements IWeatherProvider {
 
     @Override
     public void updateWeather(String cityId) {
-        CoreManager.getImpl(IFetchWeather.class).queryWeather(cityId);
+        ARouter.getInstance().navigation(IFetchWeather.class).queryWeather(cityId);
     }
 
     @Override
     public void updateWeather(){
-        if(CoreManager.getImpl(ICityProvider.class).hadCurrentCityId()){
-            CoreManager.getImpl(IFetchWeather.class).queryWeather(
-                    CoreManager.getImpl(ICityProvider.class).getCurrentCityId()
+        if((ARouter.getInstance().navigation(ICityProvider.class)).hadCurrentCityId()){
+            ARouter.getInstance().navigation(IFetchWeather.class).queryWeather(
+                    (ARouter.getInstance().navigation(ICityProvider.class)).getCurrentCityId()
             );
         } else {
             LogHelper.error(TAG, "No current city id!!");

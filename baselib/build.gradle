@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.alibaba.arouter'
 
 
 android {
@@ -11,6 +12,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ AROUTER_MODULE_NAME: project.getName() ]
+            }
+        }
 
     }
 
@@ -62,5 +69,8 @@ dependencies {
 
     // implementation library , can only be used in current module ,using JsonHelper
     implementation "com.google.code.gson:gson:$gradle.gson"
+
+    api "com.alibaba:arouter-api:$gradle.arouter"
+    annotationProcessor "com.alibaba:arouter-compiler:$gradle.arouter_compiler"
 
 }

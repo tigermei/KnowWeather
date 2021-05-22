@@ -1,5 +1,9 @@
 package com.tim.weather.api;
 
+import android.content.Context;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.tim.weather.entity.AqiEntity;
 import com.tim.weather.entity.HeWeather;
 import com.tim.weather.entity.WeatherTransverter;
@@ -23,7 +27,7 @@ import retrofit2.Response;
 /**
  * Created by SilenceDut on 2018/1/21 .
  */
-@HubInject(api = IFetchWeather.class)
+@Route(path = "/weather/weatherfetch", name = "weather weatherfetch service")
 public class WeatherFetchImpl implements IFetchWeather {
     private static final String TAG = "WeatherFetchImpl";
     private static final String $ = "$";
@@ -31,7 +35,7 @@ public class WeatherFetchImpl implements IFetchWeather {
     private AtomicReference<String> mStringAtomicReference = new AtomicReference<>($);
 
     @Override
-    public void onCreate() {
+    public void init(Context context) {
         mNetWeatherApi = AppHttpClient.getInstance().getService(NetWeatherApi.class);
     }
 
@@ -41,14 +45,14 @@ public class WeatherFetchImpl implements IFetchWeather {
 
             //
             //设置当前的cityid
-            CoreManager.getImpl(ICityProvider.class).saveCurrentCityId(cityId);
+            (ARouter.getInstance().navigation(ICityProvider.class)).saveCurrentCityId(cityId);
 
             Call<HeWeather> weatherEntityCall  = mNetWeatherApi.getWeather(NetWeatherApi.sHeyWeatherKey,cityId);
 
             /**
              *和风天气不支持县级空气质量
              **/
-            City currentCity = CoreManager.getImpl(ICityProvider.class).searchCity(cityId);
+            City currentCity = (ARouter.getInstance().navigation(ICityProvider.class)).searchCity(cityId);
             String cityName = cityId;
             if(currentCity !=null) {
                 cityName = currentCity.cityName;

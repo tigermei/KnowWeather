@@ -2,6 +2,7 @@ package com.silencedut.weather_core.api.settingprovider;
 
 import android.support.v4.util.Pair;
 
+import com.alibaba.android.arouter.facade.template.IProvider;
 import com.silencedut.weather_core.api.ICoreApi;
 import com.silencedut.weather_core.corebase.BaseFragment;
 
@@ -9,6 +10,6 @@ import com.silencedut.weather_core.corebase.BaseFragment;
  * Created by SilenceDut on 2018/1/22 .
  */
 
-public interface ISettingProvider extends ICoreApi {
+public interface ISettingProvider extends IProvider {
     Pair<BaseFragment,Integer> provideSettingFragment();
 }

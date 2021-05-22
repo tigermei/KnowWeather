@@ -2,6 +2,7 @@ package com.silencedut.city.ui.search;
 
 import android.arch.lifecycle.MutableLiveData;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.city.repository.ICityRepositoryApi;
 import com.silencedut.city.ui.adapter.CityInfoData;
 import com.silencedut.taskscheduler.TaskScheduler;
@@ -28,10 +29,10 @@ public class SearchModel extends BaseViewModel {
     }
 
     void getAllCities() {
-        CoreManager.getImpl(ICityRepositoryApi.class).getCityWorkHandler().post(new Runnable() {
+        ARouter.getInstance().navigation(ICityRepositoryApi.class).getCityWorkHandler().post(new Runnable() {
             @Override
             public void run() {
-                List<City>  allCity = CoreManager.getImpl(ICityRepositoryApi.class).queryAllCities();
+                List<City>  allCity = ARouter.getInstance().navigation(ICityRepositoryApi.class).queryAllCities();
                 if(allCity !=null) {
                     //
                     //TODO
@@ -67,7 +68,7 @@ public class SearchModel extends BaseViewModel {
         TaskScheduler.execute(new Runnable() {
             @Override
             public void run() {
-                List<City> allCity = CoreManager.getImpl(ICityRepositoryApi.class).matchingCity(key);
+                List<City> allCity = ARouter.getInstance().navigation(ICityRepositoryApi.class).matchingCity(key);
                 if(allCity !=null ) {
 
                     List<CityInfoData> cityInfoDatas = new ArrayList<>();

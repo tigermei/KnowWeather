@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.router.Router;
 import com.silencedut.weather_core.CoreManager;
 import com.silencedut.weather_core.permission.IPermissionApi;
@@ -71,6 +72,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        CoreManager.getImpl(IPermissionApi.class).onRequestPermissionsResult(this,requestCode,permissions,grantResults);
+        ARouter.getInstance().navigation(IPermissionApi.class).onRequestPermissionsResult(this,requestCode,permissions,grantResults);
     }
 }

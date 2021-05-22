@@ -1,7 +1,9 @@
 package com.silencedut.setting.provider;
 
+import android.content.Context;
 import android.support.v4.util.Pair;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.silencedut.hub_annotation.HubInject;
 import com.silencedut.setting.R;
 import com.silencedut.setting.ui.SettingFragment;
@@ -11,14 +13,12 @@ import com.silencedut.weather_core.corebase.BaseFragment;
 /**
  * Created by SilenceDut on 2018/1/22 .
  */
-@HubInject(api = ISettingProvider.class)
+@Route(path = "/setting/service/settings", name = "weather settings service")
 public class SettingProvider implements ISettingProvider {
-
     @Override
-    public void onCreate() {
+    public void init(Context context) {
 
     }
-
 
     @Override
     public Pair<BaseFragment, Integer> provideSettingFragment() {

@@ -3,6 +3,7 @@ package com.silencedut.city.ui.adapter;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.baselib.commonhelper.adapter.BaseRecyclerAdapter;
 import com.silencedut.baselib.commonhelper.adapter.BaseViewHolder;
 import com.silencedut.city.R;
@@ -39,6 +40,6 @@ public class AddHolder extends BaseViewHolder<AddData> {
 
     @OnClick(R2.id.image)
     public void onClick() {
-        CoreManager.getActivityRouter(IActivityRouter.class).toSearchActivity();
+        ARouter.getInstance().build("/city/activity/search").navigation();
     }
 }

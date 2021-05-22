@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.hub_annotation.HubActivity;
 import com.silencedut.setting.R;
@@ -26,7 +27,7 @@ import butterknife.OnClick;
  * Created by SilenceDut on 2016/11/18 .
  */
 
-@HubActivity(activityApi = IActivityRouter.class,methodName = "toAboutActivity")
+@Route(path = "/setting/activity/about", name = "about activity")
 public class AboutActivity extends BaseActivity {
     @BindView(R2.id.title)
     Toolbar mTitle;

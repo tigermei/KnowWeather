@@ -8,6 +8,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.baselib.commonhelper.persistence.PreferencesHelper;
 import com.silencedut.router.Router;
 import com.silencedut.setting.R;
@@ -88,7 +89,7 @@ public class SettingFragment extends BaseFragment {
         int scheduleWhich = PreferencesHelper.get(ResourceProvider.POLLING_TIME, 0);
         mUpdateSchedule.setText(mScheduleKeys[scheduleWhich]);
         if (isAdded()) {
-            CoreManager.getImpl(INotificationService.class).startService(getActivity(), scheduleWhich != mScheduleKeys.length - 1);
+            ARouter.getInstance().navigation(INotificationService.class).startService(getActivity(), scheduleWhich != mScheduleKeys.length - 1);
         }
 
     }
@@ -127,7 +128,7 @@ public class SettingFragment extends BaseFragment {
             mScheduleDialog.show();
 
         } else if (i == R.id.about) {
-            CoreManager.getActivityRouter(IActivityRouter.class).toAboutActivity();
+            ARouter.getInstance().build("/setting/activity/about").navigation();
         }
     }
 

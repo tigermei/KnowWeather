@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.baselib.commonhelper.adapter.BaseAdapterData;
 import com.silencedut.baselib.commonhelper.adapter.BaseRecyclerAdapter;
 import com.silencedut.baselib.commonhelper.adapter.BaseViewHolder;
@@ -72,7 +73,7 @@ public class HeaderHolder extends BaseViewHolder<HeaderData> implements Location
         mHotCityAdapter = new BaseRecyclerAdapter(getContext());
         mRecyclerView.setAdapter(mHotCityAdapter);
 
-        City locatedCity = CoreManager.getImpl(ILocationApi.class).getLocatedCity();
+        City locatedCity = ARouter.getInstance().navigation(ILocationApi.class).getLocatedCity();
         showLocation(locatedCity!=null);
 
     }
@@ -81,7 +82,7 @@ public class HeaderHolder extends BaseViewHolder<HeaderData> implements Location
     private void showLocation(boolean locationSuccess) {
         mLocationSucceeded = locationSuccess;
         if (locationSuccess) {
-            mTvLocatedCity.setText(CoreManager.getImpl(ILocationApi.class).getLocatedCity().country);
+            mTvLocatedCity.setText(ARouter.getInstance().navigation(ILocationApi.class).getLocatedCity().country);
         } else {
             mTvLocatedCity.setText(R.string.city_located_failed);
         }
@@ -90,12 +91,12 @@ public class HeaderHolder extends BaseViewHolder<HeaderData> implements Location
     @OnClick(R2.id.location_layout)
     void locate() {
         if (mLocationSucceeded) {
-            CoreManager.getImpl(IWeatherProvider.class).updateWeather(CoreManager.getImpl(ILocationApi.class).getLocatedCityId());
+            ARouter.getInstance().navigation(IWeatherProvider.class).updateWeather(ARouter.getInstance().navigation(ILocationApi.class).getLocatedCityId());
             if (getContext() instanceof Activity) {
                 ((Activity) getContext()).finish();
             }
         } else {
-            CoreManager.getImpl(ILocationApi.class).startLocation();
+            ARouter.getInstance().navigation(ILocationApi.class).startLocation();
             mTvLocatedCity.setText(R.string.city_locating);
         }
     }
@@ -143,7 +144,7 @@ public class HeaderHolder extends BaseViewHolder<HeaderData> implements Location
 
         @OnClick(R2.id.tv_hot_city_name)
         void navigationWeather() {
-            CoreManager.getImpl(IWeatherProvider.class).updateWeather(mHotCity.mCityId);
+            ARouter.getInstance().navigation(IWeatherProvider.class).updateWeather(mHotCity.mCityId);
             if (getContext() instanceof Activity) {
                 ((Activity) getContext()).finish();
             }

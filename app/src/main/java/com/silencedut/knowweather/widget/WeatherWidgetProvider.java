@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.weather_core.CoreManager;
 import com.silencedut.weather_core.api.weatherprovider.IWeatherProvider;
 import com.silencedut.weather_core.api.weatherprovider.WeatherData;
@@ -51,7 +52,7 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
 
 
         WeatherData weatherData = null;
-        LiveData<StatusDataResource<WeatherData>> liveWeatherData = CoreManager.getImpl(IWeatherProvider.class).getWeatherData();
+        LiveData<StatusDataResource<WeatherData>> liveWeatherData = ARouter.getInstance().navigation(IWeatherProvider.class).getWeatherData();
         if(liveWeatherData.getValue() !=null && liveWeatherData.getValue().isSucceed()) {
              weatherData = liveWeatherData.getValue().data;
         }

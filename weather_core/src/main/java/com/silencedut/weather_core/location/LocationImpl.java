@@ -1,5 +1,9 @@
 package com.silencedut.weather_core.location;
 
+import android.content.Context;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -16,14 +20,14 @@ import com.silencedut.weather_core.api.cityprovider.ICityProvider;
  * Created by SilenceDut on 2018/1/8 .
  */
 
-@HubInject(api = ILocationApi.class)
+@Route(path = "/weathercore/service/location", name = "weather location service")
 public class LocationImpl implements ILocationApi {
     private static final String TAG = "ILocationImpl";
     private AMapLocationClient mLocationClient;
     private City mLocatedCity;
 
     @Override
-    public void onCreate() {
+    public void init(Context context) {
         initLocation();
     }
 
@@ -41,7 +45,7 @@ public class LocationImpl implements ILocationApi {
                 LogHelper.info(TAG, "onLocationChanged %s", aMapLocation);
                 if (aMapLocation != null) {
 
-                    CoreManager.getImpl(ICityProvider.class).getCityWorkHandler().post(new Runnable() {
+                    (ARouter.getInstance().navigation(ICityProvider.class)).getCityWorkHandler().post(new Runnable() {
                         @Override
                         public void run() {
                             boolean locationSucceed = false;
@@ -49,13 +53,13 @@ public class LocationImpl implements ILocationApi {
                                 String city = aMapLocation.getCity().substring(0,2);
                                 String district = aMapLocation.getDistrict().substring(0, 2);
 
-                                mLocatedCity = CoreManager.getImpl(ICityProvider.class).searchCity(city,district);
+                                mLocatedCity = (ARouter.getInstance().navigation(ICityProvider.class)).searchCity(city,district);
 
                                 //城市库全名不匹配
                                 if (mLocatedCity == null) {
                                     city = city.substring(0,2);
                                     district = district.substring(0,2);
-                                    mLocatedCity = CoreManager.getImpl(ICityProvider.class).searchCity(city,district);
+                                    mLocatedCity = (ARouter.getInstance().navigation(ICityProvider.class)).searchCity(city,district);
 
                                 }
 

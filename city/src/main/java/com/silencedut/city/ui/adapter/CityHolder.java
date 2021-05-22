@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.baselib.commonhelper.adapter.BaseRecyclerAdapter;
 import com.silencedut.baselib.commonhelper.adapter.BaseViewHolder;
 import com.silencedut.city.R;
@@ -52,7 +53,7 @@ public class CityHolder extends BaseViewHolder<CityInfoData> {
     @OnClick(R2.id.tv_item_city_name)
     public void onClick() {
 
-        CoreManager.getImpl(IWeatherProvider.class).updateWeather(mCityId);
+        ARouter.getInstance().navigation(IWeatherProvider.class).updateWeather(mCityId);
 
         if (getContext() instanceof Activity) {
             ((Activity) getContext()).finish();

@@ -2,11 +2,14 @@ package com.silencedut.weather_core.permission;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.hub_annotation.HubInject;
 import com.silencedut.weather_core.CoreManager;
@@ -18,13 +21,13 @@ import com.silencedut.weather_core.location.ILocationApi;
  * Created by SilenceDut on 2018/1/17 .
  */
 
-@HubInject(api = IPermissionApi.class)
+@Route(path = "/weathercore/service/permission", name = "weather permission service")
 public class PermissionImpl implements IPermissionApi {
     private static final String TAG = "PermissionImpl";
     private static final int URGENT_PERMISSION = 0x01;
 
     @Override
-    public void onCreate() {
+    public void init(Context context) {
 
     }
 
@@ -38,9 +41,9 @@ public class PermissionImpl implements IPermissionApi {
 
             if((ActivityCompat.checkSelfPermission(CoreManager.getContext(), permission) != PackageManager.PERMISSION_GRANTED)){
                 if(Manifest.permission.ACCESS_FINE_LOCATION.equals(permission)) {
-                    CoreManager.getImpl(ILocationApi.class).startLocation();
+                    ARouter.getInstance().navigation(ILocationApi.class).startLocation();
                 }else if(Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permission)){
-                    CoreManager.getImpl(ICityProvider.class).loadCitys();
+                    (ARouter.getInstance().navigation(ICityProvider.class)).loadCitys();
                 }
             }
         }
@@ -60,9 +63,9 @@ public class PermissionImpl implements IPermissionApi {
             for (int index = 0; index < permissions.length;index ++ ) {
 
                 if(Manifest.permission.ACCESS_FINE_LOCATION .equals(permissions[index]) && grantResults[index] == PackageManager.PERMISSION_GRANTED) {
-                    CoreManager.getImpl(ILocationApi.class).startLocation();
+                    ARouter.getInstance().navigation(ILocationApi.class).startLocation();
                 }else if(Manifest.permission.WRITE_EXTERNAL_STORAGE .equals(permissions[index]) && grantResults[index] == PackageManager.PERMISSION_GRANTED){
-                    CoreManager.getImpl(ICityProvider.class).loadCitys();
+                    (ARouter.getInstance().navigation(ICityProvider.class)).loadCitys();
                 }
             }
         }

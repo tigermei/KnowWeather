@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.antfortune.freeline'
+apply plugin: 'com.alibaba.arouter'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.silencedut.knowweather"
         minSdkVersion gradle.minSdkVersion
@@ -19,6 +20,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+                arguments = [ AROUTER_MODULE_NAME: project.getName() ]
             }
         }
 
@@ -38,7 +40,7 @@ android {
                     "knowweather.apk".toLowerCase())
         }
     }
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {
@@ -54,4 +56,7 @@ dependencies {
     annotationProcessor "com.github.SilenceDut.Hub:hub-compiler:$gradle.hub"
     annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"
     annotationProcessor "android.arch.lifecycle:compiler:$gradle.lifecycle_compiler"
+
+    api "com.alibaba:arouter-api:$gradle.arouter"
+    annotationProcessor "com.alibaba:arouter-compiler:$gradle.arouter_compiler"
 }

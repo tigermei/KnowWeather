@@ -11,6 +11,7 @@ import android.widget.Toast;
 //import com.silencedut.city.ui.search.SearchActivity;
 //import com.silencedut.knowweather.WeatherApplication;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.weather_core.api.IActivityRouter;
 import com.tim.weather.api.IFetchWeather;
 import com.tim.weather.repository.WeatherRepository;
@@ -75,14 +76,14 @@ public class WeatherModel extends BaseViewModel implements LocationNotification 
 
 
     public void updateWeather() {
-        if(CoreManager.getImpl(ICityProvider.class).hadCurrentCityId()) {
-            CoreManager.getImpl(IFetchWeather.class).queryWeather(CoreManager.getImpl(ICityProvider.class).getCurrentCityId());
+        if((ARouter.getInstance().navigation(ICityProvider.class)).hadCurrentCityId()) {
+            ARouter.getInstance().navigation(IFetchWeather.class).queryWeather((ARouter.getInstance().navigation(ICityProvider.class)).getCurrentCityId());
         }
     }
 
     public boolean locationIsCurrent() {
-        return CoreManager.getImpl(ICityProvider.class).getCurrentCityId()
-                .equals(CoreManager.getImpl(ILocationApi.class).getLocatedCityId());
+        return (ARouter.getInstance().navigation(ICityProvider.class)).getCurrentCityId()
+                .equals(ARouter.getInstance().navigation(ILocationApi.class).getLocatedCityId());
     }
 
 
@@ -142,10 +143,10 @@ public class WeatherModel extends BaseViewModel implements LocationNotification 
 
         if (!success) {
             Toast.makeText(CoreManager.getContext(), R.string.weather_add_city_hand_mode, Toast.LENGTH_LONG).show();
-            CoreManager.getActivityRouter(IActivityRouter.class).toSearchActivity();
+            ARouter.getInstance().build("/city/activity/search").navigation();
         } else {
-            if(!CoreManager.getImpl(ICityProvider.class).hadCurrentCityId()) {
-                CoreManager.getImpl(ICityProvider.class).saveCurrentCityId(cityId);
+            if(!(ARouter.getInstance().navigation(ICityProvider.class)).hadCurrentCityId()) {
+                (ARouter.getInstance().navigation(ICityProvider.class)).saveCurrentCityId(cityId);
                 updateWeather();
             }
         }

@@ -6,6 +6,7 @@ import android.arch.lifecycle.Observer;
 import android.support.annotation.MainThread;
 import android.support.annotation.Nullable;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.city.ui.adapter.FollowedCityData;
 import com.silencedut.city.ui.adapter.FollowedCityHolder;
@@ -36,7 +37,7 @@ public class CityModel extends BaseViewModel implements LocationNotification{
     @Override
     protected void onCreate() {
         mFollowedWeather.setValue(new CopyOnWriteArrayList<FollowedCityData>());
-        CoreManager.getImpl(IWeatherProvider.class).getWeatherData().observe(this, new Observer<StatusDataResource<WeatherData>>() {
+        ARouter.getInstance().navigation(IWeatherProvider.class).getWeatherData().observe(this, new Observer<StatusDataResource<WeatherData>>() {
             @Override
             public void onChanged(@Nullable StatusDataResource<WeatherData> statusDataResource) {
                 if(statusDataResource.isSucceed()) {
@@ -56,7 +57,7 @@ public class CityModel extends BaseViewModel implements LocationNotification{
         TaskScheduler.execute(new Task<List<WeatherData>>() {
             @Override
             public List<WeatherData> doInBackground() throws InterruptedException {
-                return  CoreManager.getImpl(IWeatherProvider.class).fetchFollowedWeather();
+                return  ARouter.getInstance().navigation(IWeatherProvider.class).fetchFollowedWeather();
             }
 
             @Override
@@ -68,12 +69,12 @@ public class CityModel extends BaseViewModel implements LocationNotification{
     }
 
     public void deleteFollowedWeather(String cityId) {
-        CoreManager.getImpl(IWeatherProvider.class).deleteWeather(cityId);
+        ARouter.getInstance().navigation(IWeatherProvider.class).deleteWeather(cityId);
 
-        if(CoreManager.getImpl(ICityProvider.class).getCurrentCityId().equals(cityId)) {
-            String locationId = CoreManager.getImpl(ILocationApi.class).getLocatedCityId();
-            CoreManager.getImpl(ICityProvider.class).saveCurrentCityId(locationId);
-            CoreManager.getImpl(IWeatherProvider.class).updateWeather(locationId);
+        if((ARouter.getInstance().navigation(ICityProvider.class)).getCurrentCityId().equals(cityId)) {
+            String locationId = ARouter.getInstance().navigation(ILocationApi.class).getLocatedCityId();
+            (ARouter.getInstance().navigation(ICityProvider.class)).saveCurrentCityId(locationId);
+            ARouter.getInstance().navigation(IWeatherProvider.class).updateWeather(locationId);
         }
 
         List<FollowedCityData> followedCityDatas = mFollowedWeather.getValue();
@@ -97,7 +98,7 @@ public class CityModel extends BaseViewModel implements LocationNotification{
         for(int index =0;index<weatherDatas.size();index++) {
             WeatherData weatherData = weatherDatas.get(index);
             if (weatherData != null) {
-                if (weatherData.getCityId().equals(CoreManager.getImpl(ILocationApi.class).getLocatedCityId())) {
+                if (weatherData.getCityId().equals(ARouter.getInstance().navigation(ILocationApi.class).getLocatedCityId())) {
                     followedCityDatas.add(0, new FollowedCityData(weatherData, FollowedCityHolder.BLUR_IMAGE[index % FollowedCityHolder.BLUR_IMAGE.length]));
                 } else {
                     followedCityDatas.add(new FollowedCityData(weatherData, FollowedCityHolder.BLUR_IMAGE[index % FollowedCityHolder.BLUR_IMAGE.length]));
@@ -120,7 +121,7 @@ public class CityModel extends BaseViewModel implements LocationNotification{
         }
 
         if(!exist) {
-            if (CoreManager.getImpl(ILocationApi.class).getLocatedCityId().equals(weatherData.getCityId())) {
+            if (ARouter.getInstance().navigation(ILocationApi.class).getLocatedCityId().equals(weatherData.getCityId())) {
                 followedCityDatas.add(0, new FollowedCityData(weatherData, FollowedCityHolder.BLUR_IMAGE[(followedCityDatas.size()+1) % FollowedCityHolder.BLUR_IMAGE.length]));
             } else {
                 followedCityDatas.add(new FollowedCityData(weatherData, FollowedCityHolder.BLUR_IMAGE[(followedCityDatas.size()+1) % FollowedCityHolder.BLUR_IMAGE.length]));

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'com.alibaba.arouter'
 
 android {
     compileSdkVersion gradle.compileSdkVersion
@@ -12,6 +13,12 @@ android {
         versionName gradle.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ AROUTER_MODULE_NAME: project.getName() ]
+            }
+        }
+
         resourcePrefix "setting"
     }
 }
@@ -20,6 +27,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':weather_core')
+
+    api "com.alibaba:arouter-api:$gradle.arouter"
+    annotationProcessor "com.alibaba:arouter-compiler:$gradle.arouter_compiler"
+
     annotationProcessor "com.github.SilenceDut.Hub:hub-compiler:$gradle.hub"
     annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"
 

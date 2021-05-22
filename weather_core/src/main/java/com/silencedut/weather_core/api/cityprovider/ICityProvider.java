@@ -4,14 +4,14 @@ import android.os.Handler;
 import android.support.annotation.WorkerThread;
 import android.support.v4.util.Pair;
 
-import com.silencedut.weather_core.api.ICoreApi;
+import com.alibaba.android.arouter.facade.template.IProvider;
 import com.silencedut.weather_core.corebase.BaseFragment;
 
 /**
  * Created by SilenceDut on 2018/1/17 .
  */
 
-public interface ICityProvider extends ICoreApi {
+public interface ICityProvider extends IProvider {
     @WorkerThread
     City searchCity( String cityId);
     @WorkerThread

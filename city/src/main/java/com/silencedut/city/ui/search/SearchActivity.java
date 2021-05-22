@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.silencedut.baselib.commonhelper.adapter.BaseRecyclerAdapter;
 import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.baselib.commonhelper.utils.Check;
@@ -45,7 +46,7 @@ import static android.view.View.VISIBLE;
  * Created by SilenceDut on 16/10/19.
  */
 
-@HubActivity(activityApi = IActivityRouter.class,methodName = "toSearchActivity")
+@Route(path = "/city/activity/search", name = "search activity")
 public class SearchActivity extends BaseActivity  {
 
     @BindView(R2.id.hot_city_list)

@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.baselib.commonhelper.adapter.BaseRecyclerAdapter;
 import com.silencedut.baselib.commonhelper.adapter.BaseViewHolder;
 import com.silencedut.baselib.commonhelper.utils.UIUtil;
@@ -88,7 +89,7 @@ public class FollowedCityHolder extends BaseViewHolder<FollowedCityData> {
         mHover.setVisibility(mCityWeatherAdapter.mIsDeleting ? View.VISIBLE : View.GONE);
 
 
-        if (data.cityId.equals(CoreManager.getImpl(ILocationApi.class).getLocatedCityId())) {
+        if (data.cityId.equals(ARouter.getInstance().navigation(ILocationApi.class).getLocatedCityId())) {
             mDelete.setVisibility(View.GONE);
             mHover.setVisibility(View.GONE);
 
@@ -97,7 +98,7 @@ public class FollowedCityHolder extends BaseViewHolder<FollowedCityData> {
             mCityName.setCompoundDrawables(null, null, null, null);
         }
 
-        boolean isDefault = data.cityId.equals(CoreManager.getImpl(ICityProvider.class).getCurrentCityId());
+        boolean isDefault = data.cityId.equals((ARouter.getInstance().navigation(ICityProvider.class)).getCurrentCityId());
         mChecked.setVisibility(isDefault ? View.VISIBLE : View.GONE);
 
     }
@@ -123,7 +124,7 @@ public class FollowedCityHolder extends BaseViewHolder<FollowedCityData> {
         int i = view.getId();
         if (i == R.id.content) {
             if (!mCityWeatherAdapter.mIsDeleting) {
-                CoreManager.getImpl(IWeatherProvider.class).updateWeather(mFollowedCityData.cityId);
+                ARouter.getInstance().navigation(IWeatherProvider.class).updateWeather(mFollowedCityData.cityId);
             }
             updateAdapter(false);
 

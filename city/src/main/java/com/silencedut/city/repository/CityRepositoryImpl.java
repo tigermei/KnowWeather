@@ -1,8 +1,10 @@
 package com.silencedut.city.repository;
 
+import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.WorkerThread;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.silencedut.baselib.commonhelper.log.LogHelper;
 import com.silencedut.baselib.commonhelper.persistence.FileHelper;
 import com.silencedut.baselib.commonhelper.persistence.PreferencesHelper;
@@ -26,7 +28,7 @@ import java.util.List;
  * Created by SilenceDut on 2018/1/5 .
  */
 
-@HubInject(api = ICityRepositoryApi.class)
+@Route(path = "/city/service/cityrepository", name = "weather cityrepository service")
 public class CityRepositoryImpl implements ICityRepositoryApi {
     private static final String TAG = "CityRepositoryImpl";
     private static final String CITY_INITED = "CITY_INITED";
@@ -37,7 +39,7 @@ public class CityRepositoryImpl implements ICityRepositoryApi {
     private List<City> mAllCityData = new ArrayList<>();
 
     @Override
-    public void onCreate() {
+    public void init(Context context) {
         mCityDatabase = DBHelper.provider(CityDatabase.class,CITY_DB_NAME);
         mCityHandler =  TaskScheduler.provideHandler(TAG);
     }
