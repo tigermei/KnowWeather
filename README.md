@@ -103,13 +103,27 @@ g.ViewModel如何拿到Context的对象？
 h.JobScheduler需要在清单文件种列出BIND_JOB_SERVICE权限，否则调用后会出现报错
 i.
 
-遗留问题：
+9.遗留问题：
 1.location错误
 2.第一次安装进入，得有默认选中的城市，不然整个界面都是空的
 3.模块间的依赖关系，得通过接口来体现，而不是通过类。
 4.通知栏的显示
 5.小工具的显示
 
+10.利用ARouter改造Hub
+a.编译时产生multidex files define的错误，原因是arouter在多个module中定义了同一个group，修改后问题解决
+b.compilesSdkVersion跟buildtoolsvesion有对应关系，否则会提示aapt的错误
+c.
+
+
+11.增加对代码的插桩部分
+#TODO
+
+12.增加自定义的注解
+#TODO
+
+13.把对工程的依赖改成对aar的依赖
+#TODO
 
 
 

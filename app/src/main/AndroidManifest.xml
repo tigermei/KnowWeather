@@ -91,7 +91,6 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
 
-
         <!-- Beta弹窗必须的activity -->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
