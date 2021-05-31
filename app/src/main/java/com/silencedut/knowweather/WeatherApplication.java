@@ -3,7 +3,10 @@ package com.silencedut.knowweather;
 import android.app.Application;
 import com.alibaba.android.arouter.launcher.ARouter;
 
-import com.silencedut.weather_core.CoreManager;;
+import com.silencedut.baselib.commonhelper.annotation.PrintLogDemo;
+import com.silencedut.baselib.commonhelper.annotation.TestTarget;
+import com.silencedut.weather_core.CoreManager;
+import com.base.annotation.ExecutionTime;
 
 /**
  * Created by SilenceDut on 16/10/15.
@@ -16,12 +19,24 @@ public class WeatherApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        onCreateInternal();
+    }
+
+    @ExecutionTime
+    private void onCreateInternal(){
         sApplication = this;
         CoreManager.init(this);
         initRouter(sApplication);
 
+        TestTarget target = new TestTarget();
+        target.getBoolValue();
+        target.getIntValue();
+        target.parseLong(100);
+        PrintLogDemo demo = new PrintLogDemo();
+        demo.getBoolValue();
+        demo.getIntValue();
+        demo.parseLong(100);
     }
-
 
     @Override
     public void onTerminate() {

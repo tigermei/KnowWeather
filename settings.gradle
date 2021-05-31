@@ -1,6 +1,8 @@
 include ':weather'
 include ':setting'
 include ':weather'
+include ':plugin'
+include ':baseannotation'
 def initLocalGradleEnvironment() {
 
     Properties properties = new Properties()
@@ -31,7 +33,7 @@ def initVersion() {
     //weather_core dependencies
     gradle.ext.room_compiler = '1.0.0'
 
-    gradle.ext.arouter = '1.5.0'
+    gradle.ext.arouter = '1.2.2'
     gradle.ext.arouter_compiler = '1.2.2'
     gradle.ext.arouter_register = '1.0.2'
 

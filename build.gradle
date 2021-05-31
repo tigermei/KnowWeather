@@ -2,6 +2,10 @@
 
 buildscript {
     repositories {
+        maven {
+            url uri('./repo')
+        }
+
         jcenter()
         google()
 
@@ -12,6 +16,7 @@ buildscript {
         classpath 'com.antfortune.freeline:gradle:0.8.7'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
         classpath "com.alibaba:arouter-register:$gradle.arouter_register"
+        classpath 'com.android.gradle:plugin:0.0.1'
     }
 }
 

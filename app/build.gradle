@@ -33,13 +33,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    applicationVariants.all { variant ->
+//        variant.outputs.each { output ->
+//            output.outputFileName = new File(
+//                    output.outputFile.getParent(),
+//                    "knowweather.apk".toLowerCase())
+//        }
+//    }
+
     applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            output.outputFileName = new File(
-                    output.outputFile.getParent(),
-                    "knowweather.apk".toLowerCase())
+        variant.outputs.all { output ->
+            def relativeRootDir = output.packageApplication.outputDirectory.toPath()
+                    .relativize(rootDir.toPath()).toFile()
+            output.outputFileName = new File( "$relativeRootDir/apk", "knowweather.apk".toLowerCase())
         }
     }
+
+
     buildToolsVersion '28.0.3'
 }
 
@@ -52,6 +62,7 @@ dependencies {
     implementation project(':city')
     implementation project(':setting')
     implementation project(':weather')
+    implementation project(':baseannotation')
     annotationProcessor "com.jakewharton:butterknife-compiler:$gradle.butterknife"
     annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"
     annotationProcessor "android.arch.lifecycle:compiler:$gradle.lifecycle_compiler"
