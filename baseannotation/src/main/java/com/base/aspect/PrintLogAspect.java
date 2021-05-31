@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 public class PrintLogAspect {
 
-    @Pointcut("within(@com.jeremyliao.android.base.annotation.PrintLog *)")
+    @Pointcut("within(@com.base.aspect.PrintLog *)")
     public void withinAnnotatedClass() {
     }
 
@@ -37,11 +37,11 @@ public class PrintLogAspect {
     public void constructorInsideAnnotatedType() {
     }
 
-    @Pointcut("execution(@com.jeremyliao.android.base.annotation.PrintLog * *(..)) || methodInsideAnnotatedType()")
+    @Pointcut("execution(@com.base.aspect.PrintLog * *(..)) || methodInsideAnnotatedType()")
     public void method() {
     }
 
-    @Pointcut("execution(@com.jeremyliao.android.base.annotation.PrintLog *.new(..)) || constructorInsideAnnotatedType()")
+    @Pointcut("execution(@ccom.base.aspect.PrintLog *.new(..)) || constructorInsideAnnotatedType()")
     public void constructor() {
     }
 

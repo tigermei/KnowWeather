@@ -15,7 +15,7 @@ public class MethodControlAspect {
 
     private static String TAG = "[ExecutionTime]";
 
-    @Pointcut("within(@com.jeremyliao.android.base.annotation.MethodControl *)")
+    @Pointcut("within(@com.base.aspect.MethodControl *)")
     public void codeInTarget() {
     }
 
