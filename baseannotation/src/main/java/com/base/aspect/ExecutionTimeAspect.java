@@ -15,7 +15,7 @@ public class ExecutionTimeAspect {
 
     private static String TAG = "[ExecutionTime]";
 
-    @Pointcut("execution(@com.base.aspect.ExecutionTime * *(..))")
+    @Pointcut("execution(@com.base.annotation.ExecutionTime * *(..))")
     public void executeMethod() {
     }
 
