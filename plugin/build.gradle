@@ -26,8 +26,8 @@ sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
 //打包到本地或者远程Maven库
-group = 'com.android.gradle'
-version = '0.0.1'
+group = GROUP
+version = VERSION_NAME
 
 uploadArchives {
     repositories {

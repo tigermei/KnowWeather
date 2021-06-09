@@ -115,12 +115,11 @@ a.编译时产生multidex files define的错误，原因是arouter在多个modul
 b.compilesSdkVersion跟buildtoolsvesion有对应关系，否则会提示aapt的错误
 c.
 
-
 11.增加对代码的插桩部分
-#TODO
+补充了对PrintLog的注解后的插桩
 
 12.增加自定义的注解
-#TODO
+补充了PrintLog的注解
 
 13.把对工程的依赖改成对aar的依赖
 #TODO
