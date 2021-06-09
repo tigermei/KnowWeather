@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.alibaba.arouter'
+apply plugin: 'mei-plugin'
 
 
 android {
@@ -73,5 +74,4 @@ dependencies {
 
     api "com.alibaba:arouter-api:$gradle.arouter"
     annotationProcessor "com.alibaba:arouter-compiler:$gradle.arouter_compiler"
-
 }

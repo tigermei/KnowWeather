@@ -17,6 +17,10 @@ buildscript {
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
         classpath "com.alibaba:arouter-register:$gradle.arouter_register"
         classpath 'com.android.gradle:plugin:0.0.1'
+
+        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7'
+        classpath 'org.aspectj:aspectjtools:1.8.6'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
     }
 }
 

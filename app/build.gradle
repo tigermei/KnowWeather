@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.antfortune.freeline'
 apply plugin: 'com.alibaba.arouter'
+apply plugin: 'mei-plugin'
 
 android {
     compileSdkVersion 28
