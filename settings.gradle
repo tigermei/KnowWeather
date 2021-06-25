@@ -62,4 +62,4 @@ def initVersion() {
 initLocalGradleEnvironment()
 initVersion()
 
-include 'app', 'baselib', 'weather_core', ':city'
+include ':app', ':baselib', ':weather_core', ':city'

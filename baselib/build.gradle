@@ -40,7 +40,7 @@ dependencies {
     androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // api library , can be used in import module
-    api 'com.android.support:appcompat-v7:$gradle.supportVersion'
+    api "com.android.support:appcompat-v7:$gradle.supportVersion"
     api "com.android.support:design:$gradle.supportVersion"
 
     api ("com.jakewharton:butterknife:$gradle.butterknife")
