@@ -4,7 +4,7 @@ apply plugin: 'com.alibaba.arouter'
 apply plugin: 'mei-plugin'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion gradle.compileSdkVersion
     defaultConfig {
         applicationId "com.silencedut.knowweather"
         minSdkVersion gradle.minSdkVersion
@@ -52,6 +52,11 @@ android {
 
 
     buildToolsVersion '28.0.3'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -70,4 +75,8 @@ dependencies {
 
     api "com.alibaba:arouter-api:$gradle.arouter"
     annotationProcessor "com.alibaba:arouter-compiler:$gradle.arouter_compiler"
+
+
+    //releaseImplementation 'com.github.whataa:pandora-no-op:v2.0.3'
+    debugImplementation 'com.github.whataa:pandora:v2.1.0'
 }

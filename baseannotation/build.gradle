@@ -6,8 +6,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'mei-plugin'
 
 android {
-    compileSdkVersion 28
-
+    compileSdkVersion gradle.compileSdkVersion
     defaultConfig {
         minSdkVersion gradle.minSdkVersion
         targetSdkVersion gradle.targetVersion

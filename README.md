@@ -137,12 +137,33 @@ c.
 
 19.
 
+
+
 ####################################
 插桩代码启示：
 1.所有的plugin代码
 
 
+待跟进：
+1.搞一下unicorn框架
+2.搞一下flex:https://github.com/FLEXTool/FLEX【在weather中间添加】
+3.搞一下Retrofit的调用，研究一下源码。
+4.脱糖 D8 R8 dissurgar
+5.qigsaw
+6.dexclassloader/resouce loader，资源加载
+7.冷启动&热启动&温启动
+8.jenkins
+9.
 
+
+
+
+WeSing：
+1.添加启动后的工具检测能力，比如：读取本地数据库，删除缓存等的能力。
+2.硬件加速和软件减速 setlayeredtype
+3.渲染的原理和加速【重点】
+4.更深层理解Android系统
+5.
 
 
 
