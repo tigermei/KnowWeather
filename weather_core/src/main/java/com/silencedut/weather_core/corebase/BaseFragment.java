@@ -62,5 +62,9 @@ public abstract class BaseFragment extends Fragment implements BaseViewInit {
 
     }
 
+    protected void testGit(){
+
+    }
+
 
 }
