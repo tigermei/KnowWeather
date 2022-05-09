@@ -49,8 +49,6 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
     }
 
     private void updateWidget(Context context,AppWidgetManager appWidgetManager) {
-
-
         WeatherData weatherData = null;
         LiveData<StatusDataResource<WeatherData>> liveWeatherData = ARouter.getInstance().navigation(IWeatherProvider.class).getWeatherData();
         if(liveWeatherData.getValue() !=null && liveWeatherData.getValue().isSucceed()) {

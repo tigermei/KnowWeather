@@ -16,7 +16,7 @@ sourceSets {
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
-    implementation 'com.android.tools.build:gradle:3.0.1'
+    implementation 'com.android.tools.build:gradle:3.2.0'
     implementation 'org.aspectj:aspectjtools:1.9.1'
     implementation 'org.aspectj:aspectjrt:1.9.1'
 
