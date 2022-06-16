@@ -27,6 +27,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':weather_core')
+    implementation project(':nativelib')
 
     api "com.alibaba:arouter-api:$gradle.arouter"
     annotationProcessor "com.alibaba:arouter-compiler:$gradle.arouter_compiler"

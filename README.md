@@ -145,15 +145,15 @@ c.
 
 
 待跟进：
-1.搞一下unicorn框架
-2.搞一下flex:https://github.com/FLEXTool/FLEX【在weather中间添加】
-3.搞一下Retrofit的调用，研究一下源码。
-4.脱糖 D8 R8 dissurgar
-5.qigsaw
-6.dexclassloader/resouce loader，资源加载
-7.冷启动&热启动&温启动
-8.jenkins
-9.
+- 1.搞一下unicorn框架
+- 2.搞一下flex:https://github.com/FLEXTool/FLEX【在weather中间添加】
+- 3.搞一下Retrofit的调用，研究一下源码。
+- 4.脱糖 D8 R8 dissurgar
+- 5.qigsaw
+- 6.dexclassloader/resouce loader，资源加载
+- 7.冷启动&热启动&温启动
+- 8.jenkins
+- 9.
 
 
 

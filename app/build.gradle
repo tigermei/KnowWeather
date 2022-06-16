@@ -6,7 +6,7 @@ apply plugin: 'mei-plugin'
 android {
     compileSdkVersion gradle.compileSdkVersion
     defaultConfig {
-        applicationId "com.silencedut.knowweather"
+        applicationId "com.tme.knowweather"
         minSdkVersion gradle.minSdkVersion
         targetSdkVersion gradle.targetVersion
         versionCode gradle.versionCode
@@ -69,6 +69,7 @@ dependencies {
     implementation project(':setting')
     implementation project(':weather')
     implementation project(':baseannotation')
+    implementation project(':nativelib')
     annotationProcessor "com.jakewharton:butterknife-compiler:$gradle.butterknife"
     annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"
     annotationProcessor "android.arch.lifecycle:compiler:$gradle.lifecycle_compiler"

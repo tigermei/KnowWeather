@@ -17,6 +17,7 @@ import com.silencedut.weather_core.Version;
 import com.silencedut.weather_core.corebase.BaseActivity;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.UpgradeInfo;
+import com.tigermei.nativelib.NativeLib;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -90,7 +91,10 @@ public class AboutActivity extends BaseActivity {
             ContactActivity.navigationActivity(this);
 
         } else if (i == R.id.pay) {
-            PayActivity.navigationActivity(this);
+//            PayActivity.navigationActivity(this);
+            NativeLib nativeClass = new NativeLib();
+            String strToast = nativeClass.stringFromJNI();
+            Toast.makeText(this, strToast, Toast.LENGTH_SHORT).show();
 
         } else if (i == R.id.update_version) {
             if (mNewVersionTip.getVisibility() == View.VISIBLE) {

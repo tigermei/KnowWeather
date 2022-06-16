@@ -61,10 +61,14 @@ public abstract class BaseFragment extends Fragment implements BaseViewInit {
     protected void initDataObserver() {
 
     }
-
-    protected void testGit(){
-
-    }
-
+//
+//    protected void testGit(){
+//
+//    }
+//
+//    protected void testGitStash(){
+//
+//    }
+//
 
 }

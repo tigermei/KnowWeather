@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/baseannotation" />
             <option value="$PROJECT_DIR$/baselib" />
             <option value="$PROJECT_DIR$/city" />
+            <option value="$PROJECT_DIR$/nativelib" />
             <option value="$PROJECT_DIR$/plugin" />
             <option value="$PROJECT_DIR$/setting" />
             <option value="$PROJECT_DIR$/weather" />
