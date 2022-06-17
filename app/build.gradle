@@ -69,7 +69,7 @@ dependencies {
     implementation project(':setting')
     implementation project(':weather')
     implementation project(':baseannotation')
-    implementation project(':nativelib')
+    implementation project(':hello')
     annotationProcessor "com.jakewharton:butterknife-compiler:$gradle.butterknife"
     annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"
     annotationProcessor "android.arch.lifecycle:compiler:$gradle.lifecycle_compiler"

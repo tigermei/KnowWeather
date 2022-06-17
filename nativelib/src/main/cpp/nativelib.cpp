@@ -1,10 +1,16 @@
 #include <jni.h>
 #include <string>
+#include "Hello.h"
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_tigermei_nativelib_NativeLib_stringFromJNI(
         JNIEnv* env,
         jobject /* this */) {
-    std::string hello = "Hello from C++";
+    Hello *pHelloClass = new Hello();
+    std::string hello = "Hello";
+    if(pHelloClass){
+        hello = pHelloClass->getName();
+    }
+    ;
     return env->NewStringUTF(hello.c_str());
 }

@@ -64,3 +64,4 @@ initVersion()
 
 include ':app', ':baselib', ':weather_core', ':city'
 include ':nativelib'
+include ':hello'
