@@ -40,7 +40,8 @@ def initVersion() {
 
     //baselib.gradle dependencies
     gradle.ext.calligraphy = '2.2.0'
-    gradle.ext.butterknife = '8.8.1'
+    gradle.ext.butterknife = '10.0.0'
+    gradle.ext.butterknifeplugin = '10.0.0'
     gradle.ext.gson = '2.8.1'
     gradle.ext.retrofit2 ='2.3.0'
     gradle.ext.tinypinyin = '1.0.0'

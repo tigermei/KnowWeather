@@ -35,9 +35,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':baseannotation')
 
-    testApi 'junit:junit:4.12'
+//    testApi 'junit:junit:4.12'
 
-    androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
+//    androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // api library , can be used in import module
     api "com.android.support:appcompat-v7:$gradle.supportVersion"

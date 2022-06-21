@@ -11,10 +11,10 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath 'com.android.tools.build:gradle:7.1.3'
 
         classpath 'com.antfortune.freeline:gradle:0.8.7'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
+        classpath "com.jakewharton:butterknife-gradle-plugin:$gradle.butterknifeplugin"
         classpath "com.alibaba:arouter-register:$gradle.arouter_register"
         classpath "com.android:plugin:0.0.1-SNAPSHOT"
 

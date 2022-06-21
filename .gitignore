@@ -8,4 +8,8 @@
 .externalNativeBuild
 /repo
 /apk
+.idea
+/.idea
+
+
 

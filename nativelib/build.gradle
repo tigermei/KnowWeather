@@ -3,6 +3,8 @@ plugins {
 }
 
 android {
+    ndkVersion "23.2.8568313"
+
     compileSdkVersion gradle.compileSdkVersion
 
     defaultConfig {
@@ -27,6 +29,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            jniDebuggable true
+        }
+        debug {
+            jniDebuggable true
         }
     }
     externalNativeBuild {

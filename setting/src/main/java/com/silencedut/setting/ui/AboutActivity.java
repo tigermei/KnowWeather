@@ -97,6 +97,7 @@ public class AboutActivity extends BaseActivity {
             String strToast = nativeClass.stringFromJNIHello();
             Toast.makeText(this, strToast, Toast.LENGTH_SHORT).show();
 
+
         } else if (i == R.id.update_version) {
             if (mNewVersionTip.getVisibility() == View.VISIBLE) {
 

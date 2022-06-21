@@ -10,7 +10,9 @@ Java_com_tigermei_nativelib_NativeLib_stringFromJNI(
     std::string hello = "Hello";
     if(pHelloClass){
         hello = pHelloClass->getName();
+        delete pHelloClass;
+        pHelloClass = null;
     }
-    ;
+
     return env->NewStringUTF(hello.c_str());
 }
