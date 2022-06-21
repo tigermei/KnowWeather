@@ -19,8 +19,9 @@ public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
-
+        // 升级androidx后下面的函数被淘汰了
+        // InstrumentationRegistry.getTargetContext();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.silencedut.weather_core.test", appContext.getPackageName());
     }
 }
