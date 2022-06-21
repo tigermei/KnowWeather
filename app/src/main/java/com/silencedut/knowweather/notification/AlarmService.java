@@ -3,7 +3,7 @@ package com.silencedut.knowweather.notification;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.silencedut.router.Router;
 import com.silencedut.weather_core.callback.EventCenter;

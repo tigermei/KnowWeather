@@ -2,8 +2,8 @@ package com.silencedut.city.provider;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.WorkerThread;
-import android.support.v4.util.Pair;
+import androidx.annotation.WorkerThread;
+import androidx.core.util.Pair;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;

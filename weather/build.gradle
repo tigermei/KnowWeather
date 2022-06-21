@@ -12,7 +12,7 @@ android {
         targetSdkVersion gradle.targetVersion
         versionCode gradle.versionCode
         versionName gradle.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -41,8 +41,10 @@ dependencies {
 
     api "com.alibaba:arouter-api:$gradle.arouter"
     annotationProcessor "com.alibaba:arouter-compiler:$gradle.arouter_compiler"
-
-    annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"
-
+    annotationProcessor "androidx.room:room-compiler:$gradle.room_compiler"
     annotationProcessor "com.jakewharton:butterknife-compiler:$gradle.butterknife"
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
 }

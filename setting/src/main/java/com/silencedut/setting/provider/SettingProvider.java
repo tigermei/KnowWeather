@@ -1,7 +1,7 @@
 package com.silencedut.setting.provider;
 
 import android.content.Context;
-import android.support.v4.util.Pair;
+import androidx.core.util.Pair;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.silencedut.setting.R;

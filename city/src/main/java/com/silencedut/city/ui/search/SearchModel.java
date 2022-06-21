@@ -1,6 +1,6 @@
 package com.silencedut.city.ui.search;
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.silencedut.city.repository.ICityRepositoryApi;

@@ -1,6 +1,6 @@
 package com.silencedut.city.ui.adapter;
 
-import android.support.v4.util.Pair;
+import androidx.core.util.Pair;
 
 import com.silencedut.baselib.commonhelper.adapter.BaseAdapterData;
 import com.silencedut.city.R;

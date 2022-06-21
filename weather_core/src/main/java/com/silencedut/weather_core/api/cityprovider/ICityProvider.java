@@ -1,8 +1,8 @@
 package com.silencedut.weather_core.api.cityprovider;
 
 import android.os.Handler;
-import android.support.annotation.WorkerThread;
-import android.support.v4.util.Pair;
+import androidx.annotation.WorkerThread;
+import androidx.core.util.Pair;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
 import com.silencedut.weather_core.corebase.BaseFragment;

@@ -1,7 +1,7 @@
 package com.silencedut.weather_core.api.weatherprovider;
 
-import android.arch.lifecycle.LiveData;
-import android.support.v4.util.Pair;
+import androidx.lifecycle.LiveData;
+import androidx.core.util.Pair;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
 

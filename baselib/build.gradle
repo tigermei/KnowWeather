@@ -12,7 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -40,8 +40,8 @@ dependencies {
 //    androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // api library , can be used in import module
-    api "com.android.support:appcompat-v7:$gradle.supportVersion"
-    api "com.android.support:design:$gradle.supportVersion"
+    api "androidx.appcompat:appcompat:$gradle.supportVersion"
+    api "com.google.android.material:material:$gradle.supportVersion"
 
     api ("com.jakewharton:butterknife:$gradle.butterknife")
 
@@ -63,11 +63,11 @@ dependencies {
 
 
     // ViewModel and LiveData
-    api "android.arch.lifecycle:extensions:$gradle.lifecycle_extensions"
+    api "androidx.lifecycle:lifecycle-extensions:$gradle.lifecycle_extensions"
 
 
     // Room
-    api "android.arch.persistence.room:runtime:$gradle.room_runtime"
+    api "androidx.room:room-runtime:$gradle.room_runtime"
 
     // implementation library , can only be used in current module ,using JsonHelper
     implementation "com.google.code.gson:gson:$gradle.gson"

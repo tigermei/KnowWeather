@@ -2,7 +2,7 @@ package com.silencedut.city.repository;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.WorkerThread;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.silencedut.baselib.commonhelper.log.LogHelper;

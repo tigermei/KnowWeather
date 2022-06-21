@@ -2,7 +2,7 @@ package com.silencedut.setting.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.Toast;
 

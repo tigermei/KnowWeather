@@ -1,7 +1,7 @@
 package com.silencedut.city.repository;
 
 import android.os.Handler;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.WorkerThread;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
 import com.silencedut.weather_core.api.cityprovider.City;

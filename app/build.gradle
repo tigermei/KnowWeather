@@ -11,7 +11,7 @@ android {
         targetSdkVersion gradle.targetVersion
         versionCode gradle.versionCode
         versionName gradle.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
             //设置支持的SO库架构
@@ -66,8 +66,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
+    testImplementation('com.androidx.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'androidx.annotation', module: 'annotation'
     })
     implementation project(':weather_core')
     implementation project(':city')
@@ -77,8 +77,8 @@ dependencies {
     implementation project(':hello')
 
     annotationProcessor "com.jakewharton:butterknife-compiler:$gradle.butterknife"
-    annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"
-    annotationProcessor "android.arch.lifecycle:compiler:$gradle.lifecycle_compiler"
+    annotationProcessor "androidx.room:room-compiler:$gradle.room_compiler"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$gradle.lifecycle_compiler"
 
     api "com.alibaba:arouter-api:$gradle.arouter"
     annotationProcessor "com.alibaba:arouter-compiler:$gradle.arouter_compiler"
@@ -86,4 +86,9 @@ dependencies {
 
     //releaseImplementation 'com.github.whataa:pandora-no-op:v2.0.3'
     debugImplementation 'com.github.whataa:pandora:v2.1.0'
+
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
 }

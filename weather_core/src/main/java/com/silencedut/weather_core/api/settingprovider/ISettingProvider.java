@@ -1,6 +1,6 @@
 package com.silencedut.weather_core.api.settingprovider;
 
-import android.support.v4.util.Pair;
+import androidx.core.util.Pair;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
 import com.silencedut.weather_core.corebase.BaseFragment;

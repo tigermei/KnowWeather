@@ -1,7 +1,7 @@
 package com.silencedut.weather_core.corebase;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import static com.silencedut.weather_core.corebase.StatusDataResource.Status.CACHE_HIT;
 import static com.silencedut.weather_core.corebase.StatusDataResource.Status.ERROR;

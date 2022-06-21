@@ -1,7 +1,7 @@
 package com.tim.weather.repository.db;
 
-import android.arch.persistence.room.Entity;
-import android.support.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.annotation.NonNull;
 
 /**
  * Created by SilenceDut on 2018/1/15 .
