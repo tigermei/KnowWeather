@@ -135,7 +135,11 @@ c.
 
 18.引入worm增量编译的插件/有赞的插件/音乐的增量编译插件
 
-19.
+19.引入so文件
+
+20.升级support库到Androidx
+
+21.针对so库进行动态加载和调试。
 
 
 
@@ -153,7 +157,8 @@ c.
 - 6.dexclassloader/resouce loader，资源加载
 - 7.冷启动&热启动&温启动
 - 8.jenkins
-- 9.
+- 9.针对VSCode编译出来的so文件，在AndroidStudio调试。
+- 10.
 
 
 
