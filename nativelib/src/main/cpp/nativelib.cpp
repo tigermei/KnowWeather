@@ -11,7 +11,7 @@ Java_com_tigermei_nativelib_NativeLib_stringFromJNI(
     if(pHelloClass){
         hello = pHelloClass->getName();
         delete pHelloClass;
-        pHelloClass = null;
+        pHelloClass = nullptr;
     }
 
     return env->NewStringUTF(hello.c_str());

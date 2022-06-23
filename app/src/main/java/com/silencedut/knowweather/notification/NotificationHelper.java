@@ -36,7 +36,7 @@ import com.tim.weather.repository.WeatherRepository;
 
 public class NotificationHelper {
     private static final String TAG = "NotificationHelper";
-    private static final int NOTICE_ID_TYPE_0 = R.string.app_name;
+    private static final int NOTICE_ID_TYPE_0 = R.string.core_app_name;
     private static final int NOTICE_ID_TYPE_ALARM = 0x0001;
     private static final String CHANNEL_ID = "ChannelId";
     private static final String CHANNEL_NAME = "ChannelName";
