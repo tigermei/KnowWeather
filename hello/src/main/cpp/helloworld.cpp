@@ -36,7 +36,7 @@ string getHelloWorld(){
 
     handle = dlopen("libnativelib.so", RTLD_NOW);
     if(nullptr != handle){
-        pf_t pf = (pf_t) dlsym(handle, "_Z10helloWorldv");
+        pf_t pf = (pf_t) dlsym(handle, "_getHelloWorld");
         if(nullptr != pf){
             retValue = pf();
         }
