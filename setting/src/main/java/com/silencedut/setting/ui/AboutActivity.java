@@ -4,8 +4,11 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import androidx.appcompat.widget.Toolbar;
+
+import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +22,10 @@ import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.UpgradeInfo;
 import com.tigermei.hello.HelloWorld;
 //import com.tigermei.nativelib.NativeLib;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,10 +50,22 @@ public class AboutActivity extends BaseActivity {
     TextView mNewVersion;
     @BindView(R2.id.new_version_tip)
     ImageView mNewVersionTip;
+    @BindView(R2.id.pull_to_refresh_listview)
+    PullToRefreshListView pullToRefreshView;
 
     @Override
     public int getContentViewId() {
         return R.layout.setting_activity_about;
+    }
+
+
+    private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+        @Override
+        protected String[] doInBackground(Void... voids) {
+            // Call onRefreshComplete when the list has been refreshed.
+            pullToRefreshView.onRefreshComplete();
+            return new String[0];
+        }
     }
 
     @Override
@@ -58,6 +77,17 @@ public class AboutActivity extends BaseActivity {
         mVersion.setText(mVersion.getText() + Version.getVersionName(this));
 
         loadUpgradeInfo();
+
+        pullToRefreshView.setOnRefreshListener(new OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                // Do work to refresh the list here.
+                new GetDataTask().execute();
+            }
+        });
+
+
+
     }
 
     private void loadUpgradeInfo() {
@@ -121,4 +151,9 @@ public class AboutActivity extends BaseActivity {
         }
 
     }
+
+    private void pullToReresh(){
+        // Set a listener to be invoked when the list should be refreshed.
+    }
+
 }

@@ -6,6 +6,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="setting/src/main/res/layout/setting_activity_about.xml" value="0.26313405797101447" />
         <entry key="setting/src/main/res/layout/setting_fragment.xml" value="0.17291666666666666" />
         <entry key="weather_core/src/main/res/layout/core_dialog_share.xml" value="0.18697916666666667" />
       </map>
