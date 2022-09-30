@@ -1,5 +1,7 @@
 apply plugin: 'groovy'
-apply plugin: 'maven-publish'
+apply plugin: 'java-gradle-plugin'  //Gradle开发插件
+apply plugin: 'java'              //使用java
+apply plugin: 'maven-publish'       //插件发布
 
 sourceSets {
     main {
@@ -25,14 +27,25 @@ dependencies {
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
-//打包到本地或者远程Maven库
-group = GROUP
-version = VERSION_NAME
+publishing {
+    // 定义发布什么
+    publications {
+        debug(MavenPublication) {
+            from components.java //使用默认的配置生成jar包
+            artifactId = 'plugin'
+            groupId = 'com.android'
+            version = '0.0.1-SNAPSHOT'
+        }
+    }
+    // 定义发布到哪
+    // publishDebugPublicationToRepoRepository 发布到 plugin/build/repo
+    // publishPluginPublicationToMavenLocal 发布到 ~/.m2/repository
+    // 配置maven 仓库
+    repositories { RepositoryHandler handler->
+        handler.maven {
+            name "repo"
+            url "./../repo"
+        }
+    }
+}
 
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            repository(url: uri('../repo'))
-//        }
-//    }
-//}
