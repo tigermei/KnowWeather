@@ -4,7 +4,7 @@ public class HelloWorld {
 
     // Used to load the 'hello' library on application startup.
     static {
-        System.loadLibrary("hello");
+//        System.loadLibrary("hello");
     }
 
     /**

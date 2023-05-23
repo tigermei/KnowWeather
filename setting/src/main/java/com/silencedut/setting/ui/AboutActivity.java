@@ -123,9 +123,9 @@ public class AboutActivity extends BaseActivity {
 
         } else if (i == R.id.pay) {
 //            PayActivity.navigationActivity(this);
-            HelloWorld nativeClass = new HelloWorld();
-            String strToast = nativeClass.stringFromJNIHello();
-            Toast.makeText(this, strToast, Toast.LENGTH_SHORT).show();
+//            HelloWorld nativeClass = new HelloWorld();
+//            String strToast = nativeClass.stringFromJNIHello();
+//            Toast.makeText(this, strToast, Toast.LENGTH_SHORT).show();
 
 
         } else if (i == R.id.update_version) {
