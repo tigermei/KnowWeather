@@ -170,6 +170,9 @@ WeSing：
 4.更深层理解Android系统
 5.
 
+# Knowweather 继续
+1. 把代码重新梳理一遍
+2. 解决GPS定位的问题，采用腾讯公开的api
 
 //查看导出函数
 nm -D xxx.so
