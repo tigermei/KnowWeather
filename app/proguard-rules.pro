@@ -26,3 +26,16 @@
 # 如果使用了 单类注入，即不定义接口实现 IProvider，需添加下面规则，保护实现
 -keep class * implements com.alibaba.android.arouter.facade.template.IProvider
 
+
+# 排除okhttp
+-dontwarn com.squareup.**
+-dontwarn okio.**
+-keep public class org.codehaus.* { *; }
+-keep public class java.nio.* { *; }
+
+#  排除QWeather
+-dontwarn com.qweather.sdk.**
+-keep class com.qweather.sdk.** { *;}
+
+
+

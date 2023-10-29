@@ -6,7 +6,7 @@ apply plugin: 'mei-plugin'
 android {
     compileSdkVersion gradle.compileSdkVersion
     defaultConfig {
-        applicationId "com.tme.knowweather"
+        applicationId "com.tigermei.knowweather"
         minSdkVersion gradle.minSdkVersion
         targetSdkVersion gradle.targetVersion
         versionCode gradle.versionCode

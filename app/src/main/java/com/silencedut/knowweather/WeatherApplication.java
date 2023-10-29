@@ -7,6 +7,7 @@ import com.silencedut.baselib.commonhelper.annotation.PrintLogDemo;
 import com.silencedut.baselib.commonhelper.annotation.TestTarget;
 import com.silencedut.weather_core.CoreManager;
 import com.base.annotation.ExecutionTime;
+import com.qweather.sdk.view.HeConfig;
 
 /**
  * Created by SilenceDut on 16/10/15.
@@ -27,6 +28,10 @@ public class WeatherApplication extends Application {
         sApplication = this;
         CoreManager.init(this);
         initRouter(sApplication);
+
+        HeConfig.init("PublicId", "PrivateKey");
+        //切换至免费订阅
+        HeConfig.switchToDevService();
 
         TestTarget target = new TestTarget();
         target.getBoolValue();

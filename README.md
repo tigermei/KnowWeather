@@ -16,7 +16,7 @@
 
 
 # 特点
- * 多moudle架构的实践
+ * 多module架构的实践
  * Android Architecture Components 实践
  * 支持县级、区级天气
  * JobScheduler与JobService的使用
@@ -81,11 +81,7 @@ f.GSON 数据与类的序列化与反序列化
 g.逐步向上滑动的效果是如何实现的
 Android自带控件CollapsingToolbarLayout实现了伸缩栏折叠的效果，配合AppBarLayout/NestedScrollView/RecyclerView使用，达到折叠效果
 h.
-i.
-j.
-l.
-m.
-n.
+
 
 6.通知栏的更新效果实现方式
 a.jobSchedule 和alarmManager 定时更新的任务
