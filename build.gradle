@@ -5,10 +5,12 @@ buildscript {
         maven {
             url uri('./repo')
         }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url '' }
 
-        jcenter()
         google()
-
+        mavenCentral()
+//        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.1.3'
@@ -27,8 +29,10 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+//        jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
     }
 }
 
