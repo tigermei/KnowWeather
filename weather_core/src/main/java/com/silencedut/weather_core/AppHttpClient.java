@@ -25,7 +25,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AppHttpClient {
 
-    private static final String BASE_URL = "https://free-api.heweather.com/s6/";
+//    private static final String BASE_URL = "https://free-api.heweather.com/s6/";
+    private static final String BASE_URL = "https://api.qweather.com/v7/";
     private static final int HTTP_RESPONSE_DISK_CACHE_MAX_SIZE = 10 * 1024 * 1024;
     private static final int MAX_AGE = 60 * 10; //with network 10min
     private static final int MAX_STALE = 60 * 60 * 24; //1 day ,no network
