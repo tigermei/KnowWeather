@@ -2,13 +2,7 @@ package com.tim.weather.entity;
 
 import java.util.List;
 
-/**
- * Created by SilenceDut on 2018/1/9 .
- *
- * 和风天气接口
- */
-
-public class HeWeather {
+public class HeWeatherV6 {
     private List<HeWeather6Bean> HeWeather6;
 
     public List<HeWeather6Bean> getHeWeather6() {

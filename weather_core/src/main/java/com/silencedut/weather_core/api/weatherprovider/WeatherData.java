@@ -8,8 +8,6 @@ import java.util.List;
  */
 
 public class WeatherData {
-
-
     /**
      * cityId : 101220901
      * basic : {"city_unselected":"亳州","province":"安徽省","temp":"20°","time":"2016-09-29 14:00:00","weather":"多云","weatherIcon":"/public","img":"0"}
@@ -193,7 +191,7 @@ public class WeatherData {
             this.pm25 = pm25;
         }
 
-        public void setQuality(String quality) {
+        public void setCategory (String quality) {
             this.quality = quality;
         }
 

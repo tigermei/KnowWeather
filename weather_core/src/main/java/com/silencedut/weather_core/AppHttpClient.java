@@ -3,9 +3,15 @@ package com.silencedut.weather_core;
 import com.silencedut.baselib.commonhelper.utils.Check;
 import com.silencedut.baselib.commonhelper.network.NetWork;
 import com.silencedut.baselib.commonhelper.persistence.FileHelper;
+import com.silencedut.weather_core.entity.AqiEntityV7;
+import com.silencedut.weather_core.entity.HeWeatherV7;
+import com.silencedut.weather_core.entityconverter.AqiResponseConverter;
+import com.silencedut.weather_core.entityconverter.WeatherResponseConverter;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +21,8 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -26,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AppHttpClient {
 
 //    private static final String BASE_URL = "https://free-api.heweather.com/s6/";
-    private static final String BASE_URL = "https://api.qweather.com/v7/";
+    private static final String BASE_URL = "https://devapi.qweather.com/v7/";
     private static final int HTTP_RESPONSE_DISK_CACHE_MAX_SIZE = 10 * 1024 * 1024;
     private static final int MAX_AGE = 60 * 10; //with network 10min
     private static final int MAX_STALE = 60 * 60 * 24; //1 day ,no network
@@ -38,8 +46,33 @@ public class AppHttpClient {
 
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(cacheInterceptor()).cache(cache()).build();
 
-        mRetrofit = new Retrofit.Builder().baseUrl(BASE_URL).client(client).addConverterFactory(GsonConverterFactory.create()).build();
-
+        mRetrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(client)
+                .addConverterFactory(new Converter.Factory() {
+                    @Override
+                    public Converter<ResponseBody, ?> responseBodyConverter(Type type,
+                                                                            Annotation[] annotations,
+                                                                            Retrofit retrofit) {
+                        if (type == HeWeatherV7.class) {
+                            return new WeatherResponseConverter();
+                        }
+                        return null;
+                    }
+                })
+                .addConverterFactory(new Converter.Factory() {
+                    @Override
+                    public Converter<ResponseBody, ?> responseBodyConverter(Type type,
+                                                                            Annotation[] annotations,
+                                                                            Retrofit retrofit) {
+                        if (type == AqiEntityV7.class) {
+                            return new AqiResponseConverter();
+                        }
+                        return null;
+                    }
+                })
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
 

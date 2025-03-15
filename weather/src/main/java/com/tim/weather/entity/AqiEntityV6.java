@@ -6,7 +6,7 @@ import java.util.List;
  * Created by SilenceDut on 2018/1/20 .
  */
 
-public class AqiEntity {
+public class AqiEntityV6 {
     public List<HeWeather6Bean> HeWeather6;
 
     public static class HeWeather6Bean {
